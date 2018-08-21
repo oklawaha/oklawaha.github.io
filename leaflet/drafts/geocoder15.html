@@ -1,0 +1,125 @@
+<html>
+<head>
+<meta charset=utf-8 />
+<title>What's My Tax Jurisdiction?</title>
+<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+<link rel="stylesheet" type="text/css" href="http://cdn-geoweb.s3.amazonaws.com/esri-leaflet-geocoder/0.0.1-beta.5/esri-leaflet-geocoder.css">
+
+<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+<script src="http://cdn-geoweb.s3.amazonaws.com/esri-leaflet/0.0.1-beta.5/esri-leaflet.js"></script>
+<script src="esri-leaflet-geocoder.js"></script>
+
+<style>
+body {
+	margin:0;
+	padding:0;
+}
+#map {
+	position: absolute;
+	top:0;
+	bottom:0;
+	right:0;
+	left:0;
+}
+#location {
+	z-index: 999; 
+	position: absolute;
+	bottom: 10px;
+	left: 10px;
+	padding: 0 8px;
+	margin: 0;
+	background: #eee;
+	border-radius: 6;
+	border: 1px solid #999;
+	font-family:Verdana, Geneva, sans-serif;
+	font-size: 0.7em;
+}
+</style>
+</head>
+
+<body>
+<div id="map"></div>
+<div id="location"></div>
+
+<script>
+var map = L.map('map').setView([35.3, -82.5], 11);
+
+L.esri.basemapLayer('Streets').addTo(map);
+
+ /* Basemap choices: Streets, Topographic, NationalGeographic, Oceans, Gray, DarkGray, Imagery, ShadedRelief  */
+var alllayers = L.esri.dynamicMapLayer("http://arcgis4.roktech.net/arcgis/rest/services/Henderson/All_Layers/MapServer", {
+		opacity: 1
+		,layers: [0,17,13]
+		})
+		.addTo(map);
+
+ /* It seems that if I define too many layer id's within the map service, it slows the whole app way down.  */
+var tax = L.esri.dynamicMapLayer("http://192.168.30.45:6080/arcgis/rest/services/TaxDistricts/MapServer", {
+         opacity: 0.4,
+         useCors: false
+     })
+     .addTo(map);
+
+
+var hcgeocoder = "http://192.168.30.45:6080/arcgis/rest/services/HendersonCounty_AddressLocator/GeocodeServer";
+var geooptions = {
+'url': hcgeocoder,
+'useMapBounds': true,
+'maxResults': 3,
+'collapseAfterResult': false,
+'expanded': true,
+'position': 'topright'
+}
+  
+var searchControl = new L.esri.Controls.Geosearch(geooptions).addTo(map);
+
+var results = new L.LayerGroup().addTo(map);
+
+map.on('mousemove', function(e) {
+	
+	 var box = document.getElementById('location')
+	 var mouseloc = e.latlng.toString();
+	 var goodloc = mouseloc.substring(6);
+	 box.innerHTML = "<p>Lat-Long: " + goodloc + "</p>";
+});
+
+ searchControl.on('results', function(data) {
+     results.clearLayers();
+     for (var i = data.results.length - 1; i >= 0; i--) {
+         var loca = data.results[i].latlng;
+		 var addr = data.results[i].address;
+		 results.addLayer(L.marker(loca));
+         var identifiedFeature;
+
+         if (identifiedFeature) {
+             map.removeLayer(identifiedFeature);
+         }
+
+         tax.identify()
+		 .on(map)
+		 .at(loca)
+		 //.layers('16')
+		 .tolerance(0)
+		 .run(function(error, featureCollection) {
+             identifiedFeature = new L.GeoJSON(featureCollection.features[0], {
+                 style: function() {
+                     return {
+                         color: '#5C7DB8',
+                         weight: 2
+                     };
+                 }
+             }).addTo(map);
+			 
+			L.popup({closeOnClick: false})
+			.setLatLng(loca)
+			.setContent(addr + "<br><strong>Your Tax Jurisdiction is:&nbsp;&nbsp;  " + featureCollection.features[0].properties.Tax_Jurisdictions + ".</strong>")
+			.openOn(map);
+			 
+         })
+
+     }
+ });
+</script>
+</body>
+</html>

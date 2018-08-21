@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Leaflet Test Map</title>
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css"
+    integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ=="
+    crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"
+    integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log=="
+    crossorigin=""></script>
+    
+    
+<!--    <script src="https://unpkg.com/esri-leaflet@2.1.1/dist/esri-leaflet.js"></script>  -->
+    <style>
+        #map-container {
+          position: absolute;
+            top:0; right: 0; left: 0; bottom: 0;
+        }
+    </style>
+</head>
+<body>
+  
+   
+   <div id="map-container"></div>
+   
+    <script>
+    var map = L.map('map-container'
+        
+    )
+    .setView([35.315,-82.46],15);
+
+        var osmurl = '//{s}.tile.osm.org/{z}/{x}/{y}.png';
+        var osmtile = L.tileLayer(osmurl,{
+            attribution: 'Copyright <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+            maxZoom: 16,
+            minZoom: 5    
+        })
+        
+        var topotile = L.tileLayer.wms("https://basemap.nationalmap.gov/arcgis/services/USGSTopo/MapServer/WMSServer",
+                       {layers: '0',
+                       format: 'image/png',
+                        maxZoom: 16,
+                        minZoom: 5
+                       })
+        
+        //var esrist = L.esri.basemapLayer('Streets', {minZoom: 5})
+        /*
+        var cobnd = L.esri.featureLayer({
+            url: 'https://gisproxy.hendersoncountync.gov/arcgis/rest/services/Primary_County_Layers/MapServer/4'
+        })
+        
+        var HCprimary = L.esri.dynamicMapLayer({
+            url: 'https://gisproxy.hendersoncountync.gov/arcgis/rest/services/Primary_County_Layers/MapServer'
+        })
+        
+        */
+        
+        
+        osmtile.addTo(map);
+        topotile.addTo(map);
+        //esrist.addTo(map);
+        //cobnd.addTo(map);
+        //HCprimary.addTo(map);            
+        
+        /*
+        L.tileLayer.wms(
+        "http://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r.cgi",
+            {layers: 'nexrad-n0r-900913',
+            format: 'image/png',
+            transparent: true,
+             minZoom: 4,
+             attribution: "Weather data copyright 2012 IEM Nexrad"
+            }
+        
+        
+        ).addTo(map);
+        */
+        var marker = L.marker([35.315,-82.457]).addTo(map);
+    
+    </script>
+</body>
+</html>
