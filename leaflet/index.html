@@ -162,6 +162,11 @@ function gohere(place) {
         
         
 /*************** OVERLAYS ; I.E. VECTOR LAYERS.   ******************************************************************************************************************/
+        
+        var ecoregions = L.esri.featureLayer({
+            url: 'https://services2.arcgis.com/FiaPA4ga0iQKduv3/arcgis/rest/services/EPA_Level_III_Ecoregions/FeatureServer/0'    
+        })
+        
         var cobnd = L.esri.featureLayer({
             url: 'https://gisproxy.hendersoncountync.gov/arcgis/rest/services/Primary_County_Layers/MapServer/4',
             smoothFactor: 0.5

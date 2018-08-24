@@ -49,7 +49,7 @@
             <li><a href="#" onclick="gohere('us')">U.S.</a></li>
             <li><a href="#" onclick="gohere('hc')">Henderson County</a></li>
             <li><a href="#" onclick="gohere('hendo')">Hendersonville</a></li>
-
+            <li><a href="#" onclick="gohere('austin')">Austin</a></li>
 
        </ul>
        
@@ -66,8 +66,8 @@ WHAT NEXT?
         
 /*************** MAP BASICS. *******************************************************************************************************************************************************/
     var map = L.map('map-container',
-            {center: [35.31584,-82.45727],
-             zoom: 11,
+            {center: [30.2644,-97.74324],
+             zoom: 12,
              minZoom: 4,
              maxZoom: 20
             });
@@ -94,6 +94,8 @@ function gohere(place) {
         case 'hendo': {map.setView([35.315,-82.46],13)}
             break;
         case 'hc': {map.setView([35.315,-82.46],11)}
+            break;
+        case 'austin' : {map.setView([30.2644,-97.74324],13)}
    
     }
     
@@ -234,7 +236,7 @@ function gohere(place) {
         
 /*********** Add default layers to the map.    ******************************************************************************************************************/
         
-        stamen_terrain.addTo(map);
+        esritopo.addTo(map);
         henderson_roads.addTo(map);
 		//HCprimary.addTo(map);
 		//ncparcels.addTo(map);
@@ -286,6 +288,15 @@ function gohere(place) {
 			icon: thaticon,
 			opacity: 0.9
 			}).addTo(map);
+        var jw = L.marker([30.2645,-97.7433],{
+            icon: thaticon,
+            opacity: 0.9
+            }).addTo(map);
+        var sculpturefalls = L.marker([30.26175,-97.82361],{
+            icon: thaticon,
+            opacity: 0.9}).addTo(map);
+        jw.bindPopup("<p>J.W. Marriott</p>"); //.openPopup();
+        sculpturefalls.bindPopup("<p>Sculpture Falls</p>");
     
     </script>
 </body>
