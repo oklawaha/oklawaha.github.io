@@ -48,17 +48,14 @@
           <li><a href="#" onclick="findme()">HERE</a></li>
       </ul>
        <ul>
-        
             <li><a href="#" onclick="gohere('us')">U.S.</a></li>
             <li><a href="#" onclick="gohere('hc')">Henderson County</a></li>
             <li><a href="#" onclick="gohere('hendo')">Hendersonville</a></li>
             <li><a href="#" onclick="gohere('austin')">Austin</a></li>
 
-       </ul>
-       
-       
-       
+       </ul>    
    </div>
+   
     <script>
 	
 /* 
@@ -100,10 +97,7 @@ function gohere(place) {
         case 'hc': {map.setView([35.315,-82.46],11)};
             break;
         case 'austin' : {map.setView([30.2644,-97.74324],13)};
-   
     }
-    
-    
 }
         
 /*** LOCATE ***/
@@ -315,24 +309,3 @@ map.on('locationfound',showlocation);
 </body>
 </html>
 
-
-
-
-
-
-
-
-<!--
-/************* Vector Tile Basemap, if I can figure out how to do it. *******************/
-/*        var esritileurl = 'https://basemaps.arcgis.com/v1/arcgis/rest/services/World_Basemap/VectorTileServer/tile/{z}/{y}/{x}.pbf';
-        var esritileoptions = {rendererFactory: L.canvas.tile,
-                              attribution: '&copy; ESRI'};
-        var esritileslayer = L.vectorGrid.protobuf(esritileurl, esritileoptions);
-        
-        var mapboxurl = 'https://{s}.tiles.mapbox.com/v4/mapbox.mapbox-streets-v6/{z}/{x}/{y}.vector.pbf?access_token=pk.eyJ1Ijoib2tsYXdhaGEiLCJhIjoiY2l5bHI2azB1MDAydzJxazFvYXBuM2VlNyJ9.Glv9djlI914mew5u3kW1Rw';
-        var mapboxoptions = {rendererFactory: L.canvas.tile,
-                            attribution: '&copy; OpenStreetMap'
-                            }
-        var mapboxpbflayer = L.vectorGrid.protobuf(mapboxurl,mapboxoptions);
-*/
--->
