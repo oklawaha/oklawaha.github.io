@@ -44,6 +44,9 @@
    <div id="map-container"></div>
    <div id="location"></div>
    <div id="bookmarks">
+      <ul>
+          <li><a href="#" onclick="findme()">HERE</a></li>
+      </ul>
        <ul>
         
             <li><a href="#" onclick="gohere('us')">U.S.</a></li>
@@ -71,7 +74,6 @@ WHAT NEXT?
              minZoom: 4,
              maxZoom: 20
             });
-                    
             /* ).setView([35.315,-82.46],10);  */
 
 /**** LAT LONG *******/
@@ -101,6 +103,19 @@ function gohere(place) {
     
     
 }
+        
+/********* GEOLOCATE **************************************************/
+function findme(e) {
+    map.locate({setView: true}); }
+        
+function showlocation(e) {
+    L.marker(e.latlng).addTo(map);
+
+}
+
+map.on('locationfound',showlocation);
+
+        
 //if (bookmark == "Death Hollow") {}
 
 
