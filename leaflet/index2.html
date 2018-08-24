@@ -63,20 +63,21 @@
 	
 /* 
 WHAT NEXT?
--Geolocation.
 -Ability to send a URL string with lat/long
 */	        
         
-/*************** MAP BASICS. *******************************************************************************************************************************************************/
+/*** MAP BASICS ***/
+        
     var map = L.map('map-container',
             {center: [30.2644,-97.74324],
              zoom: 12,
              minZoom: 4,
              maxZoom: 20
             });
-            /* ).setView([35.315,-82.46],10);  */
 
-/**** LAT LONG *******/
+
+/*** DISPLAY LAT/LONG ***/
+        
 map.on('mousemove', function(e) {
 
      var box = document.getElementById('location')
@@ -87,7 +88,8 @@ map.on('mousemove', function(e) {
  });
 
 
-/**********  ADD SOME BOOKMARKS / FAVORITE PLACES *************************************************************************************************/
+/*** BOOKMARKS - FAVORITE PLACES ***/
+        
 function gohere(place) {
     //var place;
     switch (place) {
@@ -104,22 +106,19 @@ function gohere(place) {
     
 }
         
-/********* GEOLOCATE **************************************************/
+/*** LOCATE ***/
+        
 function findme(e) {
     map.locate({setView: true}); }
         
 function showlocation(e) {
     L.marker(e.latlng).addTo(map);
-
 }
-
 map.on('locationfound',showlocation);
 
         
-//if (bookmark == "Death Hollow") {}
+/*** BASEMAPS - LOTS OF 'EM. ***/
 
-
-/*************** BASEMAPS. *******************************************************************************************************************************************************/
         var carto = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png', {
             maxZoom: 18,
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attribution">CARTO</a>'
@@ -191,7 +190,7 @@ map.on('locationfound',showlocation);
 		// var esrihillshade = L.esri.basemapLayer('World Hillshade');
         
         
-/*************** OVERLAYS ; I.E. MAP SERVICES. ******************************************************************************************************************/
+/*** MAP SERVICES ***/
 
         
         var cobnd = L.esri.featureLayer({
@@ -228,8 +227,7 @@ map.on('locationfound',showlocation);
         });	
 
 
-/************** GEOJSON / CELL TOWERS ******************************************************************************************************************/
-        
+/*** CELL TOWERS, VIA GEOJSON ***/        
         var thisicon = new L.Icon(
             {iconUrl: 'towericon_small.png',
              iconSize: [8,8]
@@ -249,7 +247,7 @@ map.on('locationfound',showlocation);
             });
 
         
-/*********** Add default layers to the map.    ******************************************************************************************************************/
+/*** ADD DEFAULT LAYERS ***/
         
         esritopo.addTo(map);
         henderson_roads.addTo(map);
@@ -260,7 +258,8 @@ map.on('locationfound',showlocation);
         //cobnd.addTo(map);
         towerdata.addTo(map);
         
-/******* Define the layer controls.  ******************************************************************************************************************/
+/*** LAYER CONTROLS ***/
+        
         var basemaps = {
             "MapBox Streets" : mapboxother,
             "MapBox Outdoors" : mapboxtile,
@@ -286,14 +285,9 @@ map.on('locationfound',showlocation);
         L.control.layers(basemaps,overlays).addTo(map);
 
 
-
-
-
-/********* ADD LAT-LONG DISPLAY. *****************************************************************************************************************************/
-
-
                
-/********** ADD A MARKER AT THE COURTHOUSE. ******************************************************************************************************************/			   
+/*** ADD MARKERS ***/
+
         var thaticon = new L.Icon(
             {iconUrl: 'locationicon.png',
              iconSize: [10,10]            
