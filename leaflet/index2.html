@@ -89,13 +89,13 @@ map.on('mousemove', function(e) {
 function gohere(place) {
     //var place;
     switch (place) {
-        case 'us': {map.setView([39.47,-102.43652],5)}
+        case 'us': {map.setView([39.47,-102.43652],5)};
             break;
-        case 'hendo': {map.setView([35.315,-82.46],13)}
+        case 'hendo': {map.setView([35.315,-82.46],13)};
             break;
-        case 'hc': {map.setView([35.315,-82.46],11)}
+        case 'hc': {map.setView([35.315,-82.46],11)};
             break;
-        case 'austin' : {map.setView([30.2644,-97.74324],13)}
+        case 'austin' : {map.setView([30.2644,-97.74324],13)};
    
     }
     
@@ -295,8 +295,13 @@ function gohere(place) {
         var sculpturefalls = L.marker([30.26175,-97.82361],{
             icon: thaticon,
             opacity: 0.9}).addTo(map);
+        var bats = L.marker([30.26175,-97.74511],{
+            icon: thaticon,
+            opacity: 0.9}).addTo(map);
+        
         jw.bindPopup("<p>J.W. Marriott</p>"); //.openPopup();
         sculpturefalls.bindPopup("<p>Sculpture Falls</p>");
+        bats.bindPopup("<p>Bat observation place</p>");
     
     </script>
 </body>
