@@ -107,6 +107,7 @@ function findme(e) {
 }
         
 function showlocation(e) {
+    map.removeLayer(marker);
     L.marker(e.latlng).addTo(map);
 }
 map.on('locationfound',showlocation);
