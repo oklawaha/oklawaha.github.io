@@ -44,36 +44,37 @@
    <div id="map-container"></div>
    <div id="location"></div>
    <div id="bookmarks">
+      <ul>
+          <li><a href="#" onclick="findme()">HERE</a></li>
+      </ul>
        <ul>
-        
             <li><a href="#" onclick="gohere('us')">U.S.</a></li>
+            <li><a href="#" onclick="gohere('hc')">Henderson County</a></li>
             <li><a href="#" onclick="gohere('hendo')">Hendersonville</a></li>
+            <li><a href="#" onclick="gohere('austin')">Austin</a></li>
 
-
-       </ul>
-       
-       
-       
+       </ul>    
    </div>
+   
     <script>
 	
 /* 
 WHAT NEXT?
--Geolocation.
 -Ability to send a URL string with lat/long
 */	        
         
-/*************** MAP BASICS. *******************************************************************************************************************************************************/
+/*** MAP BASICS ***/
+        
     var map = L.map('map-container',
-            {center: [35.31584,-82.45727],
-             zoom: 13,
+            {center: [30.2644,-97.74324],
+             zoom: 12,
              minZoom: 4,
              maxZoom: 20
             });
-                    
-            /* ).setView([35.315,-82.46],10);  */
 
-/**** LAT LONG *******/
+
+/*** DISPLAY LAT/LONG ***/
+        
 map.on('mousemove', function(e) {
 
      var box = document.getElementById('location')
@@ -84,22 +85,36 @@ map.on('mousemove', function(e) {
  });
 
 
-/**********  ADD SOME BOOKMARKS / FAVORITE PLACES *************************************************************************************************/
+/*** BOOKMARKS - FAVORITE PLACES ***/
+        
 function gohere(place) {
     //var place;
     switch (place) {
-        case 'us': {map.setView([39.47,-102.43652],5)}
+        case 'us': {map.setView([39.47,-102.43652],5)};
             break;
-        case 'hendo': {map.setView([35.315,-82.46],13)}
-   
+        case 'hendo': {map.setView([35.315,-82.46],13)};
+            break;
+        case 'hc': {map.setView([35.315,-82.46],11)};
+            break;
+        case 'austin' : {map.setView([30.2644,-97.74324],13)};
     }
-    
-    
 }
-//if (bookmark == "Death Hollow") {}
+        
+/*** LOCATE ***/
+        
+function findme(e) {
+    map.locate({setView: true,maxZoom: 15}); 
+}
+        
+function showlocation(e) {
+    //map.removeLayer(marker);
+    L.marker(e.latlng).addTo(map);
+}
+map.on('locationfound',showlocation);
 
+        
+/*** BASEMAPS - LOTS OF 'EM. ***/
 
-/*************** BASEMAPS. *******************************************************************************************************************************************************/
         var carto = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png', {
             maxZoom: 18,
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attribution">CARTO</a>'
@@ -127,12 +142,24 @@ function gohere(place) {
             minZoom: 4
            });
 		   
+        
 		var mapboxtile = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/outdoors-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoib2tsYXdhaGEiLCJhIjoiY2l5bHI2azB1MDAydzJxazFvYXBuM2VlNyJ9.Glv9djlI914mew5u3kW1Rw', 
+            {attribution: "Mapbox"});
+        
+        var mapboxsat = L.tileLayer('https://api.mapbox.com/v4/mapbox.satellite/{z}/{x}/{y}.png?access_token=pk.eyJ1Ijoib2tsYXdhaGEiLCJhIjoiY2l5bHI2azB1MDAydzJxazFvYXBuM2VlNyJ9.Glv9djlI914mew5u3kW1Rw', 
             {attribution: "Mapbox"});
         
         var opentopomap = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
             maxZoom: 17,
             attribution: 'Map data: &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
+        });
+        
+        var stamen_terrain = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/terrain/{z}/{x}/{y}{r}.{ext}',{
+          attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+	       subdomains: 'abcd',
+	       minZoom: 0,
+	       maxZoom: 18,
+	       ext: 'png'   
         });
         
         var stamen_terrain_bg = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/terrain-background/{z}/{x}/{y}{r}.{ext}', {
@@ -151,15 +178,21 @@ function gohere(place) {
         var esriusgs = L.esri.basemapLayer('USATopo', {minZoom: 4});
 		
         var esriaerial = L.esri.basemapLayer('Imagery');
+        
+        var pict_base = L.esri.tiledMapLayer({
+            url: 'https://gisproxy.hendersoncountync.gov/arcgis/rest/services/Pictometry_Orthos_2018/MapServer'    
+            });
 		
 		// var esrihillshade = L.esri.basemapLayer('World Hillshade');
         
         
-/*************** OVERLAYS ; I.E. VECTOR LAYERS.   ******************************************************************************************************************/
+/*** MAP SERVICES ***/
+
+        
         var cobnd = L.esri.featureLayer({
             url: 'https://gisproxy.hendersoncountync.gov/arcgis/rest/services/Primary_County_Layers/MapServer/4',
             smoothFactor: 0.5
-            })
+            });
 
         var HCprimary = L.esri.dynamicMapLayer({
 			url: 'https://gisproxy.hendersoncountync.gov/arcgis/rest/services/Primary_County_Layers/MapServer'
@@ -177,21 +210,23 @@ function gohere(place) {
 			minZoom: 14
 			});
 		
-        var ncco = L.esri.dynamicMapLayer({url: 'https://gis11.services.ncdot.gov/arcgis/rest/services/NCDOT_CountyShorelineBdy_Poly/MapServer'});
-		
-		/* The line below MAY work. But it may not. */
+        var nccounties = L.esri.dynamicMapLayer({url: 'https://gis11.services.ncdot.gov/arcgis/rest/services/NCDOT_CountyShorelineBdy_Poly/MapServer'});
+		        
 		var pict = L.esri.tiledMapLayer({
 			url: 'https://gisproxy.hendersoncountync.gov/arcgis/rest/services/Pictometry_Orthos_2018/MapServer',
 			maxZoom: 20
 			});
-		
+	   var dem = L.esri.dynamicMapLayer({
+            url: 'https://arcgis4.roktech.net/arcgis/rest/services/Henderson/GoMaps4_V2/MapServer',
+            layers: [45,46]
+            
+        });	
 
 
-/************** GEOJSON / CELL TOWERS ******************************************************************************************************************/
-        
+/*** CELL TOWERS, VIA GEOJSON ***/        
         var thisicon = new L.Icon(
             {iconUrl: 'towericon_small.png',
-             iconSize: [10,10]
+             iconSize: [8,8]
 			 
              });
         
@@ -208,82 +243,103 @@ function gohere(place) {
             });
 
         
-/*********** Add default layers to the map.    ******************************************************************************************************************/
+/*** ADD DEFAULT LAYERS ***/
         
-        stamen_terrain_bg.addTo(map);
-        henderson_roads.addTo(map);
-		//HCprimary.addTo(map);
+        esritopo.addTo(map);
+        //henderson_roads.addTo(map);
 		//ncparcels.addTo(map);
-        ncco.addTo(map);		
-
+        //nccounties.addTo(map);		
         //cobnd.addTo(map);
         towerdata.addTo(map);
         
-/******* Define the layer controls.  ******************************************************************************************************************/
+/*** LAYER CO
+
+        
+        var thaticon = new L.Icon(
+            {iconUrl: 'locationicon.png',
+             iconSize: [10,10]            
+            });
+NTROLS ***/
+        
         var basemaps = {
             "MapBox Streets" : mapboxother,
             "MapBox Outdoors" : mapboxtile,
+            "MapBox Satellite" : mapboxsat,
             "Esri Topo": esritopo,
-            "USGS Topo (Classic)" : esriusgs,
-            "Thunderforest Outdoors" : outdoors,
             "Esri Aerial Photos" : esriaerial,
+            "USGS Topo (Classic)" : esriusgs,
             "The National Map" : topotile,
             "OpenStreetMap" : osmtile,
-            "Carto Light" : carto,
             "OpenTopoMap" : opentopomap,
-            "Stamen - Terrain Background" : stamen_terrain_bg,
+            "Stamen - Terrain" : stamen_terrain,
+            "Stamen - Terrain Background" : stamen_terrain_bg
 			// "World Hillshade" : esrihillshade
             };
         var overlays = {
-            "Cell Towers" : towerdata,
+            "Cell Towers (via JSON)" : towerdata,
             "Henderson County Roads" : henderson_roads,
 			"NC Parcels" : ncparcels,
-            "NC Counties" : ncco,
+            "NC Counties" : nccounties,
+            "County Elevation" : dem.bringToBack(),
 			"2018 Pictometry Orthophotos" : pict
             };
         L.control.layers(basemaps,overlays).addTo(map);
 
 
-
-
-
-/********* ADD LAT-LONG DISPLAY. *****************************************************************************************************************************/
-
-
                
-/********** ADD A MARKER AT THE COURTHOUSE. ******************************************************************************************************************/			   
+/*** ADD MARKERS ***/
+
+        
+        
         var thaticon = new L.Icon(
             {iconUrl: 'locationicon.png',
              iconSize: [10,10]            
             });
 
+        // Your next mission is to do a function to do this. I mean really, avoid all this repetition. 
+        function point_pop(latlong,title) {
+            var marker = L.marker(latlong, {
+			icon: thaticon,
+			opacity: 0.9
+			}).addTo(map);
+            marker.bindPopup(title);
+        
+        }
+        point_pop([30.26361, -97.77122],"Barton Springss");
+        point_pop([30.2645,-97.7433],"J.W. Marriott Hotel");
+        
+
         var marker = L.marker([35.315,-82.457], {
 			icon: thaticon,
 			opacity: 0.9
 			}).addTo(map);
-    
+        var sculpturefalls = L.marker([30.26175,-97.82361],{
+            icon: thaticon,
+            opacity: 0.9}).addTo(map);
+        var bats = L.marker([30.26175,-97.74511],{
+            icon: thaticon,
+            opacity: 0.9}).addTo(map);
+        var elephant = L.marker([30.26567, -97.74356],{
+            icon: thaticon,
+            opacity: 0.9
+            }).addTo(map);
+        var ped = L.marker([30.33351, -98.24696],{
+            icon: thaticon,
+            opacity: 0.9
+            }).addTo(map);
+            //30.26361, -97.77122
+        /*var springs = L.marker([30.26361, -97.77122],{
+            icon: thaticon,
+            opacity: 0.9
+            }).addTo(map);
+        springs.bindPopup("Barton Springs");
+        */
+        //jw.bindPopup("<p>J.W. Marriott</p>"); //.openPopup();
+        sculpturefalls.bindPopup("<p>Sculpture Falls</p>");
+        bats.bindPopup("<p>Bat observation place</p>");
+        elephant.bindPopup("<p>The Elephant Room</p>");
+        ped.bindPopup("<p>Pedernales Falls</p>");
     </script>
 </body>
 </html>
 
-
-
-
-
-
-
-
-<!--
-/************* Vector Tile Basemap, if I can figure out how to do it. *******************/
-/*        var esritileurl = 'https://basemaps.arcgis.com/v1/arcgis/rest/services/World_Basemap/VectorTileServer/tile/{z}/{y}/{x}.pbf';
-        var esritileoptions = {rendererFactory: L.canvas.tile,
-                              attribution: '&copy; ESRI'};
-        var esritileslayer = L.vectorGrid.protobuf(esritileurl, esritileoptions);
-        
-        var mapboxurl = 'https://{s}.tiles.mapbox.com/v4/mapbox.mapbox-streets-v6/{z}/{x}/{y}.vector.pbf?access_token=pk.eyJ1Ijoib2tsYXdhaGEiLCJhIjoiY2l5bHI2azB1MDAydzJxazFvYXBuM2VlNyJ9.Glv9djlI914mew5u3kW1Rw';
-        var mapboxoptions = {rendererFactory: L.canvas.tile,
-                            attribution: '&copy; OpenStreetMap'
-                            }
-        var mapboxpbflayer = L.vectorGrid.protobuf(mapboxurl,mapboxoptions);
-*/
--->
