@@ -45,12 +45,10 @@
    <div id="location"></div>
    <div id="bookmarks">
       <ul>
-          <li><a href="#" onclick="findme()">HERE</a></li>
-      </ul>
-       <ul>
+          <li><a href="#" onclick="findme()">LOCATE</a></li>
+
             <li><a href="#" onclick="gohere('us')">U.S.</a></li>
-            <li><a href="#" onclick="gohere('hc')">Henderson County</a></li>
-            <li><a href="#" onclick="gohere('hendo')">Hendersonville</a></li>
+            
             <li><a href="#" onclick="gohere('austin')">Austin</a></li>
 
        </ul>    
@@ -69,7 +67,7 @@ WHAT NEXT?
             {center: [30.2644,-97.74324],
              zoom: 12,
              minZoom: 4,
-             maxZoom: 20
+             maxZoom: 19
             });
 
 
@@ -91,10 +89,6 @@ function gohere(place) {
     //var place;
     switch (place) {
         case 'us': {map.setView([39.47,-102.43652],5)};
-            break;
-        case 'hendo': {map.setView([35.315,-82.46],13)};
-            break;
-        case 'hc': {map.setView([35.315,-82.46],11)};
             break;
         case 'austin' : {map.setView([30.2644,-97.74324],13)};
     }
@@ -250,7 +244,7 @@ map.on('locationfound',showlocation);
 		//ncparcels.addTo(map);
         //nccounties.addTo(map);		
         //cobnd.addTo(map);
-        towerdata.addTo(map);
+        //towerdata.addTo(map);
         
 /*** LAYER CO
 
@@ -276,10 +270,7 @@ NTROLS ***/
 			// "World Hillshade" : esrihillshade
             };
         var overlays = {
-            "Cell Towers (via JSON)" : towerdata,
-            "Henderson County Roads" : henderson_roads,
-			"NC Parcels" : ncparcels,
-            "NC Counties" : nccounties,
+            
             "County Elevation" : dem.bringToBack(),
 			"2018 Pictometry Orthophotos" : pict
             };
@@ -305,40 +296,14 @@ NTROLS ***/
             marker.bindPopup(title);
         
         }
-        point_pop([30.26361, -97.77122],"Barton Springss");
+        point_pop([30.26361, -97.77122],"Barton Springs");
+        point_pop([30.26175,-97.74511],"Bat Bridge!");
         point_pop([30.2645,-97.7433],"J.W. Marriott Hotel");
+        point_pop([30.26567, -97.74356],"The Elephant Room");
+        point_pop([30.33351, -98.24696],"Pedernales Falls");
+        point_pop([30.26175,-97.82361],"Sculpture Falls");
         
 
-        var marker = L.marker([35.315,-82.457], {
-			icon: thaticon,
-			opacity: 0.9
-			}).addTo(map);
-        var sculpturefalls = L.marker([30.26175,-97.82361],{
-            icon: thaticon,
-            opacity: 0.9}).addTo(map);
-        var bats = L.marker([30.26175,-97.74511],{
-            icon: thaticon,
-            opacity: 0.9}).addTo(map);
-        var elephant = L.marker([30.26567, -97.74356],{
-            icon: thaticon,
-            opacity: 0.9
-            }).addTo(map);
-        var ped = L.marker([30.33351, -98.24696],{
-            icon: thaticon,
-            opacity: 0.9
-            }).addTo(map);
-            //30.26361, -97.77122
-        /*var springs = L.marker([30.26361, -97.77122],{
-            icon: thaticon,
-            opacity: 0.9
-            }).addTo(map);
-        springs.bindPopup("Barton Springs");
-        */
-        //jw.bindPopup("<p>J.W. Marriott</p>"); //.openPopup();
-        sculpturefalls.bindPopup("<p>Sculpture Falls</p>");
-        bats.bindPopup("<p>Bat observation place</p>");
-        elephant.bindPopup("<p>The Elephant Room</p>");
-        ped.bindPopup("<p>Pedernales Falls</p>");
     </script>
 </body>
 </html>
