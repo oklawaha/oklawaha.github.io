@@ -16,7 +16,7 @@
         #map-container {
             /* height: 100%; width: 100%;  */
             position: absolute;top:0; right: 0; left: 0; bottom: 0;
-              font-family:Verdana, Geneva, sans-serif;
+            font-family:Verdana, Geneva, sans-serif;
             font-size: 0.8em;
         }
 		#location {
@@ -277,12 +277,8 @@ NTROLS ***/
 			"2018 Pictometry Orthophotos" : pict
             };
         L.control.layers(basemaps,overlays).addTo(map);
-
-
                
 /*** ADD MARKERS ***/
-
-        
         
         var thaticon = new L.Icon(
             {iconUrl: 'locationicon.png',
@@ -297,7 +293,7 @@ NTROLS ***/
             var popinfo;
             if (imgurl) {
                 popinfo = '<p><a href="' + imgurl + '"><img src="' + imgurl + '" width="200px" /></a><br>' + title + '</p>';}
-            else {popinfo = '<p>' + title + '</p>'};
+            else {popinfo = '<p>' + title + '</p>';}
                 
             
             //var popinfo = '<p><a href="' + imgurl + '"><img src="' + imgurl + '" width="200px" /></a><br>' + title + '</p>';
