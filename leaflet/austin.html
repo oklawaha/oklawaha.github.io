@@ -271,7 +271,7 @@ NTROLS ***/
             };
         var overlays = {
             
-            "County Elevation" : dem.bringToBack(),
+            //"County Elevation" : dem.bringToBack(),
 			"2018 Pictometry Orthophotos" : pict
             };
         L.control.layers(basemaps,overlays).addTo(map);
@@ -291,22 +291,23 @@ NTROLS ***/
         // I DID IT! I DID IT!!
         // NOW, see if you can translate the function stuff to an object-oriented setup.
         
-        function point_pop(latlong,title) {
+        function point_pop(latlong,title,imgurl) {
+            var popinfo = '<p><a href="' + imgurl + '"><img src="' + imgurl + '" width="200px" /></a><br>' + title + '</p>';
             var marker = L.marker(latlong, {
 			icon: thaticon,
 			opacity: 0.9
 			}).addTo(map);
-            marker.bindPopup(title);
+            marker.bindPopup(popinfo);
         
         }
-        point_pop([30.26361, -97.77122],"Barton Springs");
-        point_pop([30.26175,-97.74511],'<p><img src="images/batbridge.jpg" width="200px" /><br>Bat Bridge!</p>');
+        point_pop([30.2671, -97.76191],"Zilker Park","images/zilkerpark.jpg");
+        point_pop([30.26175,-97.74511],"Bat Bridge","images/batbridge.jpg");
         point_pop([30.2645,-97.7433],"J.W. Marriott Hotel");
-        point_pop([30.26567, -97.74356],'<p><img src="images/jazzbonez.jpg" width="200px" /><br>The Elephant Room</p>');
-        point_pop([30.33351, -98.24696],'<p><img src="images/pedernales.jpg" width="200px" /><br>Pedernales Falls/p>');
-        point_pop([30.26175,-97.82361],"Sculpture Falls");
-        point_pop([30.30839, -97.82127],'<p><img src="images/wildbasin.jpg" width="200px" /><br>Wild Basin Preserve</p>');
-        point_pop([30.27554, -97.75331],'<p><img src="images/graffiti.jpg" width="200px" /><br>Graffiti Park</p>');
+        point_pop([30.26567, -97.74356],'The Elephant Room',"images/jazzbonez.jpg");
+        point_pop([30.33351, -98.24696],"Pedernales Falls","images/pedernales.jpg");
+        //point_pop([30.26175,-97.82361],"Sculpture Falls");
+        point_pop([30.30839, -97.82127],'Wild Basin Preserve',"images/wildbasin.jpg");
+        point_pop([30.27554, -97.75331],"Graffiti Park","images/graffiti.jpg");
 
     </script>
 </body>
