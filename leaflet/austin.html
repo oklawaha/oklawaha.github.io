@@ -16,8 +16,8 @@
         #map-container {
             /* height: 100%; width: 100%;  */
             position: absolute;top:0; right: 0; left: 0; bottom: 0;
-            font-family:Verdana, Geneva, sans-serif;
-            font-size: 0.8em;
+            /* font-family:Verdana, Geneva, sans-serif;
+            font-size: 0.8em; */
         }
 		#location {
             z-index: 999;
@@ -212,11 +212,11 @@ map.on('locationfound',showlocation);
 			url: 'https://gisproxy.hendersoncountync.gov/arcgis/rest/services/Pictometry_Orthos_2018/MapServer',
 			maxZoom: 20
 			});
-	   var dem = L.esri.dynamicMapLayer({
-            url: 'https://arcgis4.roktech.net/arcgis/rest/services/Henderson/GoMaps4_V2/MapServer',
-            layers: [45,46]
-            
-        });	
+        var ecoregions = L.esri.featureLayer({
+            url: 'https://services2.arcgis.com/FiaPA4ga0iQKduv3/arcgis/rest/services/EPA_Level_III_Ecoregions/FeatureServer/0'     
+        
+            });
+	   //https://services2.arcgis.com/FiaPA4ga0iQKduv3/arcgis/rest/services/EPA_Level_III_Ecoregions/FeatureServer/0
 
 
 /*** CELL TOWERS, VIA GEOJSON ***/        
@@ -272,9 +272,9 @@ NTROLS ***/
 			// "World Hillshade" : esrihillshade
             };
         var overlays = {
-            
+            "North American Ecoregions (Level III)" : ecoregions
             //"County Elevation" : dem.bringToBack(),
-			"2018 Pictometry Orthophotos" : pict
+			//"2018 Pictometry Orthophotos" : pict
             };
         L.control.layers(basemaps,overlays).addTo(map);
                
@@ -292,7 +292,7 @@ NTROLS ***/
         function point_pop(latlong,title,imgurl) {
             var popinfo;
             if (imgurl) {
-                popinfo = '<p><a href="' + imgurl + '"><img src="' + imgurl + '" width="200px" /></a><br>' + title + '</p>';}
+                popinfo = '<strong><a href="' + imgurl + '"><img src="' + imgurl + '" width="200px" /></a><br>' + title + '</strong>';}
             else {popinfo = '<p>' + title + '</p>';}
                 
             
