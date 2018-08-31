@@ -213,8 +213,11 @@ map.on('locationfound',showlocation);
             url: 'https://services2.arcgis.com/FiaPA4ga0iQKduv3/arcgis/rest/services/EPA_Level_III_Ecoregions/FeatureServer/0'     
         
             });
-	   //https://services2.arcgis.com/FiaPA4ga0iQKduv3/arcgis/rest/services/EPA_Level_III_Ecoregions/FeatureServer/0
-
+        var naturalearth = L.esri.dynamicMapLayer({
+            url: 'https://smallscale.nationalmap.gov/arcgis/rest/services/NaturalEarth/MapServer',
+            maxZoom:10,
+            opacity: 0.5
+            });
 
 /*** CELL TOWERS, VIA GEOJSON ***/        
         var thisicon = new L.Icon(
@@ -269,7 +272,8 @@ NTROLS ***/
 			// "World Hillshade" : esrihillshade
             };
         var overlays = {
-            "North American Ecoregions (Level III)" : ecoregions
+            "North American Ecoregions (Level III)" : ecoregions,
+            "USGS Natural Earth" : naturalearth
             //"County Elevation" : dem.bringToBack(),
 			//"2018 Pictometry Orthophotos" : pict
             };
