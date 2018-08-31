@@ -15,21 +15,23 @@
     <style>
         #map-container {
             /* height: 100%; width: 100%;  */
-          position: absolute;top:0; right: 0; left: 0; bottom: 0;
+            position: absolute;top:0; right: 0; left: 0; bottom: 0;
+              font-family:Verdana, Geneva, sans-serif;
+            font-size: 0.8em;
         }
 		#location {
-	z-index: 999;
-	position: absolute;
-	bottom: 10px;
-	left: 10px;
-	padding: 0 8px;
-	margin: 0;
-	background-color: #fff;
-	border-radius: 6px;
-	border: 1.5px solid #999;
-	font-family:Verdana, Geneva, sans-serif;
-	font-size: 0.7em;
-}
+            z-index: 999;
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            padding: 0 8px;
+            margin: 0;
+            background-color: #fff;
+            border-radius: 6px;
+            border: 1.5px solid #999;
+            font-family:Verdana, Geneva, sans-serif;
+            font-size: 0.7em;
+        }
 #bookmarks {
 	z-index: 999;position:absolute; bottom: 60px; left: 10px; background-color: #fff; border-radius: 6px; border: 1.5px solid #999;
 	font-family:Verdana, Geneva, sans-serif;
@@ -65,7 +67,7 @@ WHAT NEXT?
         
     var map = L.map('map-container',
             {center: [30.2644,-97.74324],
-             zoom: 12,
+             zoom: 11,
              minZoom: 4,
              maxZoom: 19
             });
@@ -292,7 +294,13 @@ NTROLS ***/
         // NOW, see if you can translate the function stuff to an object-oriented setup.
         
         function point_pop(latlong,title,imgurl) {
-            var popinfo = '<p><a href="' + imgurl + '"><img src="' + imgurl + '" width="200px" /></a><br>' + title + '</p>';
+            var popinfo;
+            if (imgurl) {
+                popinfo = '<p><a href="' + imgurl + '"><img src="' + imgurl + '" width="200px" /></a><br>' + title + '</p>';}
+            else {popinfo = '<p>' + title + '</p>'};
+                
+            
+            //var popinfo = '<p><a href="' + imgurl + '"><img src="' + imgurl + '" width="200px" /></a><br>' + title + '</p>';
             var marker = L.marker(latlong, {
 			icon: thaticon,
 			opacity: 0.9
