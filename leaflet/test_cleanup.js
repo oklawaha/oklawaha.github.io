@@ -53,7 +53,7 @@
        </ul>    
    </div>
    
-    <script>
+<script>
 	
 /* 
 WHAT NEXT?

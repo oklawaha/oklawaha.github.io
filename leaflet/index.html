@@ -12,8 +12,8 @@
     
     <script src="towers.js"></script>
     
-    <style>
-        #map-container {
+<style>
+#map-container {
             /* height: 100%; width: 100%;  */
           position: absolute;top:0; right: 0; left: 0; bottom: 0;
         }
@@ -62,19 +62,14 @@
    </div>
     <script>
 	
-/* 
-WHAT NEXT?
--Geolocation.
--Ability to send a URL string with lat/long
-*/	        
         
 /*************** MAP BASICS. *******************************************************************************************************************************************************/
-    var map = L.map('map-container',
-            {center: [30.2645,-97.7433],
-             zoom: 13,
-             minZoom: 4,
-             maxZoom: 18
-            });
+var map = L.map('map-container',{
+    center: [30.2645,-97.7433],
+    zoom: 13,
+    minZoom: 4,
+    maxZoom: 18
+    });
                     
             /* ).setView([35.315,-82.46],10);  */
 
@@ -92,22 +87,22 @@ map.on('mousemove', function(e) {
 function gohere(place) {
     //var place;
     switch (place) {
-    case 'church': {map.setView([38.1573,-111.121],14);}
-    break;
-    case 'deathhollow': {map.setView([37.7669,-111.20417],15);}
-    break;
-    case 'meadow': {map.setView([35.311,-82.9279],14);}     
-    break;
-    case 'granitelake': {map.setView([40.95262,-122.85742],15);}   
-    break;
-    case 'blackbutte': {map.setView([41.36654,-122.34911],15);}
-    break;
-    case 'thefield': {map.setView([35.28171,-82.29236],15)}
-    break;
+        case 'church': {map.setView([38.1573,-111.121],14);}
+            break;
+        case 'deathhollow': {map.setView([37.7669,-111.20417],15);}
+            break;
+        case 'meadow': {map.setView([35.311,-82.9279],14);}     
+            break;
+        case 'granitelake': {map.setView([40.95262,-122.85742],15);}   
+            break;
+        case 'blackbutte': {map.setView([41.36654,-122.34911],15);}
+            break;
+        case 'thefield': {map.setView([35.28171,-82.29236],15)}
+            break;
         case 'monarch': {map.setView([36.4532,-118.56484],15)}
-    break;
+            break;
         case 'us': {map.setView([39.47,-102.43652],5)}
-    break;
+            break;
         case 'austin':  {map.setView([30.25,-97.621],11)}
    
     }
