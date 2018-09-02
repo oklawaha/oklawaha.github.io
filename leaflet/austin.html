@@ -16,7 +16,7 @@
         #map-container {
             position: absolute;top:0; right: 0; left: 0; bottom: 0;
         }
-		#location {
+		#latlong {
             z-index: 999;
             position: absolute;
             bottom: 10px;
@@ -30,21 +30,32 @@
             font-size: 0.7em;
         }
 #bookmarks {
-	z-index: 999;position:absolute; bottom: 60px; left: 10px; background-color: #fff; border-radius: 6px; border: 1.5px solid #999;
+	z-index: 999;position:absolute; bottom: 90px; left: 10px; background-color: #fff; border-radius: 6px; border: 1.5px solid #999;
 	font-family:Verdana, Geneva, sans-serif;
-	font-size: 0.7em;padding: 0 8px;
+	font-size: 0.7em;
+    padding: 0 8px;
 	margin: 0;
 	}
 
+#locate {
+	z-index: 999;position:absolute; bottom: 60px; left: 10px; background-color: #fff; border-radius: 6px; border: 1.5px solid #999;
+	font-family:Verdana, Geneva, sans-serif;
+	font-size: 0.7em;
+    padding: 2px;
+	margin: 0;
+            
+            
+        }
+        
     </style>
 </head>
 <body>
    
    <div id="map-container"></div>
-   <div id="location"></div>
+    <div id="latlong"></div>
+   <div id="locate"><a href="#" onclick="findme()"><img src="images/target.png" width="20px" /></a></div>
    <div id="bookmarks">
       <ul>
-          <li><a href="#" onclick="findme()">LOCATE</a></li>
 
             <li><a href="#" onclick="gohere('us')">U.S.</a></li>
             
@@ -74,7 +85,7 @@ WHAT NEXT?
         
 map.on('mousemove', function(e) {
 
-     var box = document.getElementById('location')
+     var box = document.getElementById('latlong')
      var mouseloc = e.latlng.toString();
      var goodloc = mouseloc.substring(6);
      box.innerHTML = "<p>Lat-Long: " + goodloc + "</p>";
