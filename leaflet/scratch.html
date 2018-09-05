@@ -298,6 +298,25 @@ map.on('locationfound',showlocation);
 
         // NOW, see if you can translate the function stuff to an object-oriented setup.
         
+        
+        function pop_this(latlong,title,imgurl) {
+            this.latlong = latlong;
+            this.imgurl = imgurl;
+            this.title = title;
+            this.pop = function() {
+                 if (imgurl) {
+                popinfo = '<strong><a href="' + imgurl + '"><img src="' + imgurl + '" width="200px" /></a><br>' + title + '</strong>';}
+                else {popinfo = '<p>' + title + '</p>';}
+            var marker = L.marker(latlong, {
+			icon: thaticon,
+			opacity: 0.9
+			}).addTo(map);
+            marker.bindPopup(popinfo);
+            }
+            
+            
+        // ORIGINAL FUNCTION.
+        
         function point_pop(latlong,title,imgurl) {
             var popinfo;
             if (imgurl) {
@@ -326,7 +345,6 @@ map.on('locationfound',showlocation);
         point_pop([36.45405, -118.56686],"Monarch Lakes");
         point_pop([35.26827, -82.29157],"Bradley Falls (Lower)");
         point_pop([35.18602, -82.60228],"Joanna Mountain");
-        point_pop([37.94894, -109.70595],"Cathedral Butte camp");
 
     </script>
 </body>
