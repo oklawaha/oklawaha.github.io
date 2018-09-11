@@ -304,16 +304,16 @@ map.on('locationfound',showlocation);
             this.imgurl = imgurl;
             this.title = title;
             this.pop = function() {
-                 if (imgurl) {
-                popinfo = '<strong><a href="' + imgurl + '"><img src="' + imgurl + '" width="200px" /></a><br>' + title + '</strong>';}
-                else {popinfo = '<p>' + title + '</p>';}
-            var marker = L.marker(latlong, {
+                 if (this.imgurl) {
+                popinfo = '<strong><a href="' + this.imgurl + '"><img src="' + this.imgurl + '" width="200px" /></a><br>' + this.title + '</strong>';}
+                else {popinfo = '<p>' + this.title + '</p>';}
+            var marker = L.marker(this.latlong, {
 			icon: thaticon,
 			opacity: 0.9
 			}).addTo(map);
             marker.bindPopup(popinfo);
             }
-            
+        }
             
         // ORIGINAL FUNCTION.
         
@@ -344,7 +344,9 @@ map.on('locationfound',showlocation);
         point_pop([35.31113, -82.92729],"The Glorious Meadow");
         point_pop([36.45405, -118.56686],"Monarch Lakes");
         point_pop([35.26827, -82.29157],"Bradley Falls (Lower)");
-        point_pop([35.18602, -82.60228],"Joanna Mountain");
+        //point_pop([35.18602, -82.60228],"Joanna Mountain");
+            
+        //var thing1 = new pop_this([35.18602, -82.60228],"Joanna Mountain","images/pedernales2.jpg"));
 
     </script>
 </body>

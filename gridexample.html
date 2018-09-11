@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    
+    <style>
+        * {margin: 0; padding: 0;}
+        
+        .grid {
+            font-size: 2em;
+            color: white;
+            display:grid;
+            grid-template-columns: 1fr 1fr;
+                
+        }
+        .title {
+            background-color: blue;
+            grid-column-end: span 2;
+
+        }
+        .header {background-color: green;}
+        .sidebar {background-color: red;}
+        .content {background-color: brown;}
+        .footer {background-color: orange;}
+    
+
+    </style>
+    
+    
+    
+</head>
+<body>
+    
+    <div class="grid">
+          
+       <div class="title">Title</div>
+       <div class="header">Header</div>
+       <div class="sidebar">Sidebar</div>
+       <div class="content">Content</div>
+       <div class="footer">Footer</div>
+       
+    </div>
+    
+    
+    
+</body>
+</html>
