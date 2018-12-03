@@ -303,9 +303,7 @@ map.on('locationfound',showlocation);
             if (imgurl) {
                 popinfo = '<strong><a href="' + imgurl + '"><img src="' + imgurl + '" width="200px" /></a><br>' + title + '</strong>';}
             else {popinfo = '<p>' + title + '</p>';}
-                
-            
-            //var popinfo = '<p><a href="' + imgurl + '"><img src="' + imgurl + '" width="200px" /></a><br>' + title + '</p>';
+            // Create a marker and popup for each location.
             var marker = L.marker(latlong, {
 			icon: thaticon,
 			opacity: 0.9
