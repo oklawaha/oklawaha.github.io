@@ -278,7 +278,7 @@ map.on('locationfound',showlocation);
             "NC Counties" : nccounties,
             /*  "County Elevation" : dem.bringToBack(),  */
 			"1951 Aerial Photos" : a1951,
-            "2018 Pictometry Orthophotos" : pict
+            "2018 Pictometry Orthophotos" : pict.bringToBack()
             
             };
         L.control.layers(basemaps,overlays).addTo(map);
