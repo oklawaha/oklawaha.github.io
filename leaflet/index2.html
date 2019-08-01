@@ -214,15 +214,15 @@ map.on('locationfound',showlocation);
 			url: 'https://gisproxy.hendersoncountync.gov/arcgis/rest/services/Pictometry_Orthos_2018/MapServer',
 			maxZoom: 20
 			});
-        var a1951 = L.esri.tiledMapLayer(
+        var a1951 = L.esri.tiledMapLayer({
             url:  'http://gisproxy.hendersoncountync.gov/arcgis/rest/services/Aerial_Photos_1951/MapServer',
             maxZoom: 20
-            );
+            });
 	   var dem = L.esri.dynamicMapLayer({
             url: 'https://arcgis4.roktech.net/arcgis/rest/services/Henderson/GoMaps4_V2/MapServer',
             layers: [45,46]
             
-        });	
+            });	
 
 
 /*** CELL TOWERS, VIA GEOJSON ***/        
