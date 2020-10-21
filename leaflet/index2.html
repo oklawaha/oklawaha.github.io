@@ -212,7 +212,7 @@ map.on('locationfound',showlocation);
         var nccounties = L.esri.dynamicMapLayer({url: 'https://gis11.services.ncdot.gov/arcgis/rest/services/NCDOT_CountyShorelineBdy_Poly/MapServer'});
 		        
 		var pict = L.esri.tiledMapLayer({
-			url: 'https://gisproxy.hendersoncountync.gov/arcgis/rest/services/Pictometry_Orthos_2018/MapServer',
+			url: 'https://gisproxy.hendersoncountync.gov/arcgis/rest/services/Pictometry_Orthos_2020/MapServer',
 			maxZoom: 20
 			});
         var a1951 = L.esri.tiledMapLayer({
@@ -279,7 +279,7 @@ map.on('locationfound',showlocation);
             "NC Counties" : nccounties,
             /*  "County Elevation" : dem.bringToBack(),  */
             "1951 Aerial Photos" : a1951,
-            "2018 Pictometry Orthophotos" : pict.bringToBack()
+            "2020 Pictometry Orthophotos" : pict.bringToBack()
             
             };
         L.control.layers(basemaps,overlays).addTo(map);
