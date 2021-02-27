@@ -3,54 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leaflet Map 2 - Henderson County with BaseMap Selection</title>
+    <title>Map of Travels</title>
     
-   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.2.0/dist/leaflet.css">
-    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.2.0/dist/leaflet-src.min.js"></script>
-    <script src="esri-leaflet.js"></script>
-    <script src="https://unpkg.com/leaflet.vectorgrid@1.2.0"></script>
+   <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.2.0/dist/leaflet.css">    -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/leaflet@1.2.0/dist/leaflet-src.min.js"></script>
+    -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/leaflet.js"></script>
     
-    <script src="towers.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-gpx/1.4.0/gpx.min.js"></script>
     
     <style>
         #map-container {
-            /* height: 100%; width: 100%;  */
-          position: absolute;top:0; right: 0; left: 0; bottom: 0;
+            position: absolute;top:0; right: 0; left: 0; bottom: 0;
         }
-		#location {
-	z-index: 999;
-	position: absolute;
-	bottom: 10px;
-	left: 10px;
-	padding: 0 8px;
-	margin: 0;
-	background-color: #fff;
-	border-radius: 6px;
-	border: 1.5px solid #999;
+		#latlong {
+            z-index: 999;
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            padding: 0 8px;
+            margin: 0;
+            background-color: #fff;
+            border-radius: 6px;
+            border: 1.5px solid #999;
+            font-family:Verdana, Geneva, sans-serif;
+            font-size: 0.7em;
+        }
+#bookmarks {
+	z-index: 999;position:absolute; bottom: 90px; left: 10px; background-color: #fff; border-radius: 6px; border: 1.5px solid #999;
 	font-family:Verdana, Geneva, sans-serif;
 	font-size: 0.7em;
-}
-#bookmarks {
-	z-index: 999;position:absolute; bottom: 60px; left: 10px; background-color: #fff; border-radius: 6px; border: 1.5px solid #999;
-	font-family:Verdana, Geneva, sans-serif;
-	font-size: 0.7em;padding: 0 8px;
+    padding: 0 8px;
 	margin: 0;
 	}
 
+#locate {
+	z-index: 999;position:absolute; bottom: 60px; left: 10px; background-color: #fff; border-radius: 6px; border: 1.5px solid #999;
+	font-family:Verdana, Geneva, sans-serif;
+	font-size: 0.7em;
+    padding: 2px;
+	margin: 0;
+            
+            
+        }
+        
     </style>
 </head>
 <body>
    
    <div id="map-container"></div>
-   <div id="location"></div>
+    <div id="latlong"></div>
+   <div id="locate"><a href="#" onclick="findme()"><img src="images/target.png" width="20px" /></a></div>
    <div id="bookmarks">
       <ul>
-          <li><a href="#" onclick="findme()">HERE</a></li>
-      </ul>
-       <ul>
+
             <li><a href="#" onclick="gohere('us')">U.S.</a></li>
-            <li><a href="#" onclick="gohere('hc')">Henderson County</a></li>
-            <li><a href="#" onclick="gohere('hendo')">Hendersonville</a></li>
+            
+            <li><a href="#" onclick="gohere('austin')">Austin</a></li>
+
        </ul>    
    </div>
    
@@ -64,10 +75,10 @@ WHAT NEXT?
 /*** MAP BASICS ***/
         
     var map = L.map('map-container',
-            {center: [35.315,-82.46],
-             zoom: 12,
+            {center: [37,-98],
+             zoom: 5,
              minZoom: 4,
-             maxZoom: 20
+             maxZoom: 19
             });
 
 
@@ -75,13 +86,12 @@ WHAT NEXT?
         
 map.on('mousemove', function(e) {
 
-     var box = document.getElementById('location')
+     var box = document.getElementById('latlong')
      var mouseloc = e.latlng.toString();
      var goodloc = mouseloc.substring(6);
      box.innerHTML = "<p>Lat-Long: " + goodloc + "</p>";
      // box.innerHTML = "<p>" + mouseloc.toString() + "</p>";
  });
-
 
 /*** BOOKMARKS - FAVORITE PLACES ***/
         
@@ -90,12 +100,7 @@ function gohere(place) {
     switch (place) {
         case 'us': {map.setView([39.47,-102.43652],5)};
             break;
-        case 'hendo': {map.setView([35.315,-82.46],13)};
-            break;
-        case 'hc': {map.setView([35.315,-82.46],11)};
-            break;
         case 'austin' : {map.setView([30.2644,-97.74324],13)};
-            
     }
 }
         
@@ -212,19 +217,18 @@ map.on('locationfound',showlocation);
         var nccounties = L.esri.dynamicMapLayer({url: 'https://gis11.services.ncdot.gov/arcgis/rest/services/NCDOT_CountyShorelineBdy_Poly/MapServer'});
 		        
 		var pict = L.esri.tiledMapLayer({
-			url: 'https://gisproxy.hendersoncountync.gov/arcgis/rest/services/Pictometry_AccuPlus_2020/MapServer',
+			url: 'https://gisproxy.hendersoncountync.gov/arcgis/rest/services/Pictometry_Orthos_2018/MapServer',
 			maxZoom: 20
 			});
-        var a1951 = L.esri.tiledMapLayer({
-            url:  'http://gisproxy.hendersoncountync.gov/arcgis/rest/services/Aerial_Photos_1951/MapServer',
-            maxZoom: 19
+        var ecoregions = L.esri.featureLayer({
+            url: 'https://services2.arcgis.com/FiaPA4ga0iQKduv3/arcgis/rest/services/EPA_Level_III_Ecoregions/FeatureServer/0'     
+        
             });
-	   var dem = L.esri.dynamicMapLayer({
-            url: 'https://arcgis4.roktech.net/arcgis/rest/services/Henderson/GoMaps4_V2/MapServer',
-            layers: [45,46]
-            
-            });	
-
+        var naturalearth = L.esri.dynamicMapLayer({
+            url: 'https://smallscale.nationalmap.gov/arcgis/rest/services/NaturalEarth/MapServer',
+            maxZoom:10,
+            opacity: 0.5
+            });
 
 /*** CELL TOWERS, VIA GEOJSON ***/        
         var thisicon = new L.Icon(
@@ -245,18 +249,29 @@ map.on('locationfound',showlocation);
             
             });
 
+/*** ADD GPX FILES ***/
+
+        var gpxfile = '../gpx/Small_mown_area_on_strawberry_bald.gpx';
+        //var gpx = new L.GPX(gpxfile);
         
 /*** ADD DEFAULT LAYERS ***/
-        
-        esritopo.addTo(map);
-        /*  a1951.addTo(map);  */
+        mapboxtile.addTo(map);
+        //gpxlyr.addTo(map);
+        //esritopo.addTo(map);
         //henderson_roads.addTo(map);
 		//ncparcels.addTo(map);
-        nccounties.addTo(map);		
+        //nccounties.addTo(map);		
         //cobnd.addTo(map);
-        towerdata.addTo(map);
+        //towerdata.addTo(map);
         
-/*** LAYER CONTROLS ***/
+/*** LAYER CONTROLS ************/
+
+        
+/*        var thaticon = new L.Icon(
+            {iconUrl: 'locationicon.png',
+             iconSize: [10,10]            
+            });
+*/
         
         var basemaps = {
             "MapBox Streets" : mapboxother,
@@ -273,45 +288,77 @@ map.on('locationfound',showlocation);
 			// "World Hillshade" : esrihillshade
             };
         var overlays = {
-            "Cell Towers (via JSON)" : towerdata,
-            "Henderson County Roads" : henderson_roads,
-			"NC Parcels" : ncparcels,
-            "NC Counties" : nccounties,
-            /*  "County Elevation" : dem.bringToBack(),  */
-            "1951 Aerial Photos" : a1951,
-            "2020 Pictometry Orthophotos" : pict.bringToBack()
-            
+            "North American Ecoregions (Level III)" : ecoregions,
+            "USGS Natural Earth" : naturalearth
+            //"County Elevation" : dem.bringToBack(),
+			//"2018 Pictometry Orthophotos" : pict
             };
         L.control.layers(basemaps,overlays).addTo(map);
-
-
                
 /*** ADD MARKERS ***/
-
-/*        var thaticon = new L.Icon(
+        
+        var thaticon = new L.Icon(
             {iconUrl: 'locationicon.png',
              iconSize: [10,10]            
             });
 
-        var marker = L.marker([35.315,-82.457], {
+        // NOW, see if you can translate the function stuff to an object-oriented setup.
+        
+        function point_pop(latlong,title,imgurl) {
+            var popinfo;
+            if (imgurl) {
+                popinfo = '<strong><a href="' + imgurl + '" target="_blank"><img src="' + imgurl + '" width="200px" /></a><br>' + title + '</strong>';}
+            else {popinfo = '<p>' + title + '</p>';}
+            // Create a marker and popup for each location.
+            var marker = L.marker(latlong, {
 			icon: thaticon,
 			opacity: 0.9
 			}).addTo(map);
-        var jw = L.marker([30.2645,-97.7433],{
-            icon: thaticon,
-            opacity: 0.9
-            }).addTo(map);
-        var sculpturefalls = L.marker([30.26175,-97.82361],{
-            icon: thaticon,
-            opacity: 0.9}).addTo(map);
-        var bats = L.marker([30.26175,-97.74511],{
-            icon: thaticon,
-            opacity: 0.9}).addTo(map);*/
+            marker.bindPopup(popinfo);
         
-        /*  jw.bindPopup("<p>J.W. Marriott</p>"); //.openPopup();
-        sculpturefalls.bindPopup("<p>Sculpture Falls</p>");
-        bats.bindPopup("<p>Bat observation place</p>");     */
-    
+        }
+        point_pop([30.2671, -97.76191],"Zilker Park","images/zilkerpark.jpg");
+        point_pop([30.26175,-97.74511],"Bat Bridge","images/batbridge.jpg");
+        point_pop([30.26567, -97.74356],'The Elephant Room',"images/jazzbonez.jpg");
+        point_pop([30.33351, -98.24696],"Pedernales Falls","images/pedernales.jpg");
+        //point_pop([30.30839, -97.82127],'Wild Basin Preserve',"images/wildbasin.jpg");
+        point_pop([30.27554, -97.75331],"Graffiti Park","images/graffiti.jpg");
+        point_pop([30.3109, -98.24016],"Pedernales Falls State Park","images/pedernales2.jpg");
+        point_pop([35.31113, -82.92729],"The Glorious Meadow","images/gloriousmeadow.jpg");
+        point_pop([36.45405, -118.56686],"Monarch Lakes","images/monarch.jpg");
+        point_pop([35.26827, -82.29157],"Bradley Falls (Lower)");
+        point_pop([35.18602, -82.60228],"Joanna Mountain");
+        point_pop([37.94894, -109.70595],"Cathedral Butte camp","images/cathedralbutte.jpg");
+        point_pop([38.14818, -111.13005],"The Church (Slot canyon in Capitol Reef National Park)","images/slotcanyon.jpg");
+        point_pop([41.36654,-122.34911],"Black Butte","images/blackbutte.jpg");
+        point_pop([35.63924, -83.37181],"Charlies Bunion","images/charliesbunion.jpg");
+        point_pop([35.65412, -83.44429],"Mount LeConte","images/leconte.jpg");
+        point_pop([40.95606, -122.84747],"Gibson Meadow","images/meadow2.jpg");
+        point_pop([37.76377, -111.20876],"Death Hollow Slot Canyon","images/slotcanyon2.jpg");
+        point_pop([36.07718, -112.12876],"Indian Garden, Grand Canyon");
+        point_pop([37.89543, -122.5741],"Muir Woods");
+        point_pop([44.56059, -74.07191],"Loon Lake");
+        point_pop([35.11692, -75.98713],"Ocracoke");
+        point_pop([35.67982, -83.39749],"Porters Flat");
+        point_pop([36.05968, -107.96093],"Chaco Canyon");
+        point_pop([39.24914, -119.75361],"Deer Run Bed and Breakfast, Nevada");
+        point_pop([40.727694,-105.540937],"The Great Stupa of Dharmakaya, Colorado");
+        point_pop([47.46986, -123.84742],"Olympic National Park, Washington","images/OlympicCoast.jpg");
+        point_pop([60.638889, -153.863056],"Twin Lakes, Alaska (Home of Dick Proenneke)","https://en.wikipedia.org/wiki/Twin_Lakes_(Alaska)#/media/File:Twin_Lakes_from_Low_Pass.jpg");
+        point_pop([46.81389, -71.20805],"Quebec City");
+        point_pop([45.76613, -63.20364],"Dorje Denma Ling Monastery, Nova Scotia");
+        point_pop([18.30914, -65.79399],"El Yunque, Puerto Rico");
+        point_pop([18.36057, -65.01808],"Bordeaux Bay, St. Thomas, U.S. Virgin Islands");
+        point_pop([25.66687, -100.31106],"Monterrey, Mexico");
+        point_pop([36.13735, -82.04388],"Hampton Creek Cove","images/hampton.jpg");
+        point_pop([36.09263, -82.14598],"Roan High Bluff");
+        // This is an example comment.
+        
+
+        // Puerto Rico, Denazin, California Condor, Bordeaux Bay, Pecos Wilderness, La Selva
+        
+        // 
+
     </script>
 </body>
 </html>
