@@ -215,6 +215,11 @@ map.on('locationfound',showlocation);
 			url: 'https://gisproxy.hendersoncountync.gov/arcgis/rest/services/Pictometry_Standard_2020G/MapServer',
 			maxZoom: 20
 			});
+        var pict2 = L.esri.tiledMapLayer({
+			url: 'https://gisproxy.hendersoncountync.gov/arcgis/rest/services/Pictometry_AccuPlus_2020/MapServer',
+			maxZoom: 20
+			});
+
         var a1951 = L.esri.tiledMapLayer({
             url:  'http://gisproxy.hendersoncountync.gov/arcgis/rest/services/Aerial_Photos_1951/MapServer',
             maxZoom: 19
@@ -279,7 +284,8 @@ map.on('locationfound',showlocation);
             "NC Counties" : nccounties,
             /*  "County Elevation" : dem.bringToBack(),  */
             "1951 Aerial Photos" : a1951,
-            "2020 Pictometry Orthophotos (update)" : pict.bringToBack()
+            "2020 Pictometry Orthophotos (Accu-Plus)" : pict2,
+            "2020 Pictometry Orthophotos (standard)" : pict.bringToBack()
             
             };
         L.control.layers(basemaps,overlays).addTo(map);
