@@ -203,6 +203,12 @@ map.on('locationfound',showlocation);
             layers: [5,6]
             
             });
+
+        var countyborder = L.esri.dynamicMapLayer({
+           url: 'https://gisproxy.hendersoncountync.gov/arcgis/rest/services/Primary_County_Layers/MapServer',
+            layers: [4]
+            
+            });
 		
 		var ncparcels = L.esri.dynamicMapLayer({
 			url: 'https://services.nconemap.gov/secure/rest/services/NC1Map_Parcels/MapServer',
@@ -253,13 +259,14 @@ map.on('locationfound',showlocation);
         
 /*** ADD DEFAULT LAYERS ***/
         
-        esritopo.addTo(map);
+        stamen_terrain.addTo(map);
         /*  a1951.addTo(map);  */
         //henderson_roads.addTo(map);
 		//ncparcels.addTo(map);
-        nccounties.addTo(map);		
+        //nccounties.addTo(map);		
+        countyborder.addTo(map);
         //cobnd.addTo(map);
-        towerdata.addTo(map);
+        //towerdata.addTo(map);
         
 /*** LAYER CONTROLS ***/
         
@@ -279,7 +286,8 @@ map.on('locationfound',showlocation);
             };
         var overlays = {
             "Cell Towers (via JSON)" : towerdata,
-            "Henderson County Roads" : henderson_roads,
+            /* "Henderson County Roads" : henderson_roads,  */
+            "Henderson County Border" : countyborder,
 			"NC Parcels" : ncparcels,
             "NC Counties" : nccounties,
             /*  "County Elevation" : dem.bringToBack(),  */
