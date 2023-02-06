@@ -181,6 +181,8 @@ map.on('locationfound',showlocation);
             id: 'mapbox.streets'});
         
         var esritopo = L.esri.basemapLayer('Topographic', {minZoom: 4});
+
+        var esrinormal = L.esri.basemapLayer('Streets', {minZoom: 4});
 		
         var esriusgs = L.esri.basemapLayer('USATopo', {minZoom: 4});
 		
@@ -277,6 +279,7 @@ map.on('locationfound',showlocation);
             "MapBox Satellite" : mapboxsat,
             "Esri Topo": esritopo,
             "Esri Aerial Photos" : esriaerial,
+            "Esri Normal" : esrinormal,
             "USGS Topo (Classic)" : esriusgs,
             "The National Map" : topotile,
             "OpenStreetMap" : osmtile,
