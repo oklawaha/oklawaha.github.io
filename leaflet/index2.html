@@ -98,11 +98,12 @@ map.on('mousemove', function(e) {
 
      // box.innerHTML = "<p>" + mouseloc.toString() + "</p>";
  });
+
  map.on('mousemove', function(e) {
-var box = document.getElementById('zoomlevel')
-var zoom = e.getZoom();
-//var goodloc = mouseloc.substring(6);
-box.innerHTML = "<p>Zoom Level: " + zoom + "</p>";
+    var box = document.getElementById('zoomlevel')
+    var zoom = map.getZoom();
+    //var goodloc = mouseloc.substring(6);
+    box.innerHTML = "<p>Zoom Level: " + zoom + "</p>";
 
 // box.innerHTML = "<p>" + mouseloc.toString() + "</p>";
 });
