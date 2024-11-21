@@ -249,6 +249,12 @@ map.on('locationfound',showlocation);
 			url: 'https://services.nconemap.gov/secure/rest/services/NC1Map_Parcels/MapServer',
 			minZoom: 14
 			});
+
+        var streets = L.esri.dynamicMapLayer({
+            url: 'https://gisproxy.hendersoncountync.gov/arcgis/rest/services/Streets/MapServer',
+            maxZoom: 23
+
+        });
 		
         var nccounties = L.esri.dynamicMapLayer({url: 'https://gis11.services.ncdot.gov/arcgis/rest/services/NCDOT_CountyShorelineBdy_Poly/MapServer'});
 		        
@@ -326,6 +332,7 @@ map.on('locationfound',showlocation);
             "Henderson County Border" : countyborder,
 			"NC Parcels" : ncparcels,
             "NC Counties" : nccounties,
+            "Streets" : streets,
             /*  "County Elevation" : dem.bringToBack(),  */
             "1951 Aerial Photos" : a1951,
             "2020 Pictometry AccuPlus Orthos" : accu2020,
