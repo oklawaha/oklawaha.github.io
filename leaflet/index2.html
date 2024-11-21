@@ -97,11 +97,10 @@ map.on('mousemove', function(e) {
      var goodloc = mouseloc.substring(6);
      box.innerHTML = "<p>Lat-Long: " + goodloc + "</p>";
 
-     // box.innerHTML = "<p>" + mouseloc.toString() + "</p>";
  });
 
  //map.on('mousemove', function(e) {
-map.on('zoomend', function(e) {
+/*map.on('zoomend', function(e) {
     var box = document.getElementById('zoomlevel')
     var zoom = map.getZoom();
     //var goodloc = mouseloc.substring(6);
@@ -109,10 +108,16 @@ map.on('zoomend', function(e) {
 
 // box.innerHTML = "<p>" + mouseloc.toString() + "</p>";
 });
+*/
 
+function showzoom(e) {
+    var box = document.getElementById('zoomlevel')
+    var zoom = map.getZoom();
+    box.innerHTML = "<p>Zoom Level " + zoom + "</p>";
+}
 
-
-
+map.on('mousemove',showzoom);
+map.on('zoomend', showzoom);
 
 /*** BOOKMARKS - FAVORITE PLACES ***/
         
@@ -126,7 +131,6 @@ function gohere(place) {
         case 'hc': {map.setView([35.315,-82.46],11)};
             break;
         case 'austin' : {map.setView([30.2644,-97.74324],13)};
-            
     }
 }
         
