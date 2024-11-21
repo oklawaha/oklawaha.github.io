@@ -57,7 +57,7 @@
 <body>
    
    <div id="map-container"></div>
-   <div id="zoomlevel"><p>Look there's something here</p></div>
+   <div id="zoomlevel"></div>
    <div id="location"></div>
    <div id="bookmarks">
       <ul>
@@ -98,6 +98,15 @@ map.on('mousemove', function(e) {
 
      // box.innerHTML = "<p>" + mouseloc.toString() + "</p>";
  });
+ map.on('mousemove', function(e) {
+var box = document.getElementById('zoomlevel')
+var zoom = e.getZoom();
+//var goodloc = mouseloc.substring(6);
+box.innerHTML = "<p>Zoom Level: " + zoom + "</p>";
+
+// box.innerHTML = "<p>" + mouseloc.toString() + "</p>";
+});
+
 
 
 /*** BOOKMARKS - FAVORITE PLACES ***/
