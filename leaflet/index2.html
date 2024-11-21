@@ -100,7 +100,8 @@ map.on('mousemove', function(e) {
      // box.innerHTML = "<p>" + mouseloc.toString() + "</p>";
  });
 
- map.on('mousemove', function(e) {
+ //map.on('mousemove', function(e) {
+map.on('zoomend', function(e) {
     var box = document.getElementById('zoomlevel')
     var zoom = map.getZoom();
     //var goodloc = mouseloc.substring(6);
@@ -108,6 +109,8 @@ map.on('mousemove', function(e) {
 
 // box.innerHTML = "<p>" + mouseloc.toString() + "</p>";
 });
+
+
 
 
 
@@ -288,11 +291,6 @@ map.on('locationfound',showlocation);
 /*** ADD DEFAULT LAYERS ***/
         
         opentopomap.addTo(map);
-        //stamen_terrain.addTo(map);
-        /*  a1951.addTo(map);  */
-        //henderson_roads.addTo(map);
-		//ncparcels.addTo(map);
-        //nccounties.addTo(map);		
         countyborder.addTo(map);
         //cobnd.addTo(map);
         //towerdata.addTo(map);
@@ -326,34 +324,6 @@ map.on('locationfound',showlocation);
             
             };
         L.control.layers(basemaps,overlays).addTo(map);
-
-
-               
-/*** ADD MARKERS ***/
-
-/*        var thaticon = new L.Icon(
-            {iconUrl: 'locationicon.png',
-             iconSize: [10,10]            
-            });
-
-        var marker = L.marker([35.315,-82.457], {
-			icon: thaticon,
-			opacity: 0.9
-			}).addTo(map);
-        var jw = L.marker([30.2645,-97.7433],{
-            icon: thaticon,
-            opacity: 0.9
-            }).addTo(map);
-        var sculpturefalls = L.marker([30.26175,-97.82361],{
-            icon: thaticon,
-            opacity: 0.9}).addTo(map);
-        var bats = L.marker([30.26175,-97.74511],{
-            icon: thaticon,
-            opacity: 0.9}).addTo(map);*/
-        
-        /*  jw.bindPopup("<p>J.W. Marriott</p>"); //.openPopup();
-        sculpturefalls.bindPopup("<p>Sculpture Falls</p>");
-        bats.bindPopup("<p>Bat observation place</p>");     */
     
     </script>
 </body>
