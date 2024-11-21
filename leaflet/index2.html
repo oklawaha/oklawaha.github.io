@@ -16,6 +16,7 @@
         #map-container {
             /* height: 100%; width: 100%;  */
           position: absolute;top:0; right: 0; left: 0; bottom: 0;
+          background-color: #fff;
         }
 		#location {
             z-index: 999;
@@ -176,7 +177,6 @@ map.on('locationfound',showlocation);
             minZoom: 4
            });
 		   
-        
 		var mapboxtile = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/outdoors-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoib2tsYXdhaGEiLCJhIjoiY2l5bHI2azB1MDAydzJxazFvYXBuM2VlNyJ9.Glv9djlI914mew5u3kW1Rw', 
             {attribution: "Mapbox"});
         
