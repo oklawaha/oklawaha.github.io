@@ -18,18 +18,34 @@
           position: absolute;top:0; right: 0; left: 0; bottom: 0;
         }
 		#location {
-	z-index: 999;
-	position: absolute;
-	bottom: 10px;
-	left: 10px;
-	padding: 0 8px;
-	margin: 0;
-	background-color: #fff;
-	border-radius: 6px;
-	border: 1.5px solid #999;
-	font-family:Verdana, Geneva, sans-serif;
-	font-size: 0.7em;
-}
+            z-index: 999;
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            padding: 0 8px;
+            margin: 0;
+            background-color: #fff;
+            border-radius: 6px;
+            border: 1.5px solid #999;
+            font-family:Verdana, Geneva, sans-serif;
+            font-size: 0.7em;
+        }
+    #zoomlevel {
+        z-index: 999;
+            position: absolute;
+            bottom: 120px;
+            left: 10px;
+            padding: 0 8px;
+            margin: 0;
+            background-color: #fff;
+            border-radius: 6px;
+            border: 1.5px solid #999;
+            font-family:Verdana, Geneva, sans-serif;
+            font-size: 0.7em;
+        }
+
+
+    }
 #bookmarks {
 	z-index: 999;position:absolute; bottom: 60px; left: 10px; background-color: #fff; border-radius: 6px; border: 1.5px solid #999;
 	font-family:Verdana, Geneva, sans-serif;
@@ -42,6 +58,7 @@
 <body>
    
    <div id="map-container"></div>
+   <div id="zoomlevel"></div>
    <div id="location"></div>
    <div id="bookmarks">
       <ul>
@@ -79,6 +96,7 @@ map.on('mousemove', function(e) {
      var mouseloc = e.latlng.toString();
      var goodloc = mouseloc.substring(6);
      box.innerHTML = "<p>Lat-Long: " + goodloc + "</p>";
+
      // box.innerHTML = "<p>" + mouseloc.toString() + "</p>";
  });
 
