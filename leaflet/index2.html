@@ -84,7 +84,7 @@ WHAT NEXT?
             {center: [35.315,-82.46],
              zoom: 12,
              minZoom: 1,
-             maxZoom: 21
+             maxZoom: 23
             });
 
 
@@ -260,6 +260,11 @@ map.on('locationfound',showlocation);
 			url: 'https://gisproxy.hendersoncountync.gov/arcgis/rest/services/Pictometry_Orthos_2022/MapServer',
 			maxZoom: 20
 			});
+        var accu2020 = L.esri.tiledMapLayer({
+            url:  "https://gisproxy.hendersoncountync.gov/arcgis/rest/services/Pictometry_AccuPlus_2020_v2/MapServer",
+            maxZoom:23    
+
+            });
 
         var a1951 = L.esri.tiledMapLayer({
             url:  'https://gisproxy.hendersoncountync.gov/arcgis/rest/services/AerialPhotos1951/MapServer',
@@ -323,8 +328,9 @@ map.on('locationfound',showlocation);
             "NC Counties" : nccounties,
             /*  "County Elevation" : dem.bringToBack(),  */
             "1951 Aerial Photos" : a1951,
-            "2022 Pictometry Orthophotos" : pict2,
-            "2020 Pictometry Orthophotos (standard)" : pict.bringToBack()
+            "2020 Pictometry AccuPlus Orthos" : accu2020,
+            "2022 Pictometry Orthophotos" : pict2
+            //"2020 Pictometry Orthophotos (standard)" : pict.bringToBack()
             
             };
         L.control.layers(basemaps,overlays).addTo(map);
