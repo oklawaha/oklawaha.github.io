@@ -100,17 +100,6 @@ map.on('mousemove', function(e) {
 
  });
 
- //map.on('mousemove', function(e) {
-/*map.on('zoomend', function(e) {
-    var box = document.getElementById('zoomlevel')
-    var zoom = map.getZoom();
-    //var goodloc = mouseloc.substring(6);
-    box.innerHTML = "<p>Zoom Level " + zoom + "</p>";
-
-// box.innerHTML = "<p>" + mouseloc.toString() + "</p>";
-});
-*/
-
 function showzoom(e) {
     var box = document.getElementById('zoomlevel')
     var zoom = map.getZoom();
@@ -150,10 +139,6 @@ map.on('locationfound',showlocation);
         
 /*** BASEMAPS - LOTS OF 'EM. ***/
 
-        var carto = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png', {
-            maxZoom: 18,
-            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attribution">CARTO</a>'
-            });
 			
         var osmurl = '//{s}.tile.osm.org/{z}/{x}/{y}.png';
 		
@@ -212,32 +197,11 @@ map.on('locationfound',showlocation);
         var esriusgs = L.esri.basemapLayer('USATopo', {minZoom: 4});
 		
         var esriaerial = L.esri.basemapLayer('Imagery');
-        
-        var pict_base = L.esri.tiledMapLayer({
-            url: 'https://gisproxy.hendersoncountync.gov/arcgis/rest/services/Pictometry_Orthos_2018/MapServer'    
-            });
 		
 		// var esrihillshade = L.esri.basemapLayer('World Hillshade');
         
         
 /*** MAP SERVICES ***/
-
-        
-        var cobnd = L.esri.featureLayer({
-            url: 'https://gisproxy.hendersoncountync.gov/arcgis/rest/services/Primary_County_Layers/MapServer/4',
-            smoothFactor: 0.5
-            });
-
-        var HCprimary = L.esri.dynamicMapLayer({
-			url: 'https://gisproxy.hendersoncountync.gov/arcgis/rest/services/Primary_County_Layers/MapServer'
-			
-			});
-        
-        var henderson_roads = L.esri.dynamicMapLayer({
-           url: 'https://gisproxy.hendersoncountync.gov/arcgis/rest/services/Primary_County_Layers/MapServer',
-            layers: [5,6]
-            
-            });
 
         var countyborder = L.esri.dynamicMapLayer({
            url: 'https://gisproxy.hendersoncountync.gov/arcgis/rest/services/Primary_County_Layers/MapServer',
@@ -249,45 +213,34 @@ map.on('locationfound',showlocation);
 			url: 'https://services.nconemap.gov/secure/rest/services/NC1Map_Parcels/MapServer',
 			minZoom: 14
 			});
-
         var streets = L.esri.dynamicMapLayer({
             url: 'https://gisweb.hendersoncountync.gov/arcgis/rest/services/GISWeb/Roads/MapServer',
             maxZoom: 23
-
         });
 		
         var nccounties = L.esri.dynamicMapLayer({url: 'https://gis11.services.ncdot.gov/arcgis/rest/services/NCDOT_CountyShorelineBdy_Poly/MapServer'});
-		        
 		var pict = L.esri.tiledMapLayer({
-			url: 'https://gisproxy.hendersoncountync.gov/arcgis/rest/services/Pictometry_Standard_2020_cached/MapServer',
+			url: 'https://gisweb.hendersoncountync.gov/arcgis/rest/services/Pictometry_Standard_2020_cached/MapServer',
 			maxZoom: 20
 			});
         var pict2 = L.esri.tiledMapLayer({
-			url: 'https://gisproxy.hendersoncountync.gov/arcgis/rest/services/Pictometry_Orthos_2022/MapServer',
+			url: 'https://gisweb.hendersoncountync.gov/arcgis/rest/services/Pictometry_Orthos_2022/MapServer',
 			maxZoom: 20
 			});
         var accu2020 = L.esri.tiledMapLayer({
-            url:  "https://gisproxy.hendersoncountync.gov/arcgis/rest/services/Pictometry_AccuPlus_2020_v2/MapServer",
+            url:  "https://gisweb.hendersoncountync.gov/arcgis/rest/services/Pictometry_AccuPlus_2020_v2/MapServer",
             maxZoom:23    
-
             });
-
         var a1951 = L.esri.tiledMapLayer({
-            url:  'https://gisproxy.hendersoncountync.gov/arcgis/rest/services/AerialPhotos1951/MapServer',
+            url:  'https://gisweb.hendersoncountync.gov/arcgis/rest/services/AerialPhotos1951/MapServer',
             maxZoom: 19
             });
-	   var dem = L.esri.dynamicMapLayer({
-            url: 'https://arcgis4.roktech.net/arcgis/rest/services/Henderson/GoMaps4_V2/MapServer',
-            layers: [45,46]
-            
-            });	
 
 
 /*** CELL TOWERS, VIA GEOJSON ***/        
         var thisicon = new L.Icon(
             {iconUrl: 'towericon_small.png',
              iconSize: [8,8]
-			 
              });
         
         function dothis (feature, layer) {
@@ -299,16 +252,11 @@ map.on('locationfound',showlocation);
         
         var towerdata = L.geoJSON(jsontowers, {
             onEachFeature: dothis
-            
             });
 
-        
-/*** ADD DEFAULT LAYERS ***/
-        
+/*** ADD DEFAULT LAYERS ***/        
         opentopomap.addTo(map);
         countyborder.addTo(map);
-        //cobnd.addTo(map);
-        //towerdata.addTo(map);
         
 /*** LAYER CONTROLS ***/
         
@@ -328,12 +276,10 @@ map.on('locationfound',showlocation);
             };
         var overlays = {
             "Cell Towers (via JSON)" : towerdata,
-            /* "Henderson County Roads" : henderson_roads,  */
             "Henderson County Border" : countyborder,
 			"NC Parcels" : ncparcels,
             "NC Counties" : nccounties,
             "Streets" : streets,
-            /*  "County Elevation" : dem.bringToBack(),  */
             "1951 Aerial Photos" : a1951,
             "2020 Pictometry AccuPlus Orthos" : accu2020,
             "2022 Pictometry Orthophotos" : pict2
@@ -345,4 +291,3 @@ map.on('locationfound',showlocation);
     </script>
 </body>
 </html>
-
