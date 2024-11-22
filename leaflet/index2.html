@@ -188,7 +188,7 @@ map.on('locationfound',showlocation);
             maxZoom: 18,
             ext: 'png'
         });			
-        var mapboxother = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1Ijoib2tsYXdhaGEiLCJhIjoiY2l5bHI2azB1MDAydzJxazFvYXBuM2VlNyJ9.Glv9djlI914mew5u3kW1Rw', 
+        var mapboxstreets = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1Ijoib2tsYXdhaGEiLCJhIjoiY2l5bHI2azB1MDAydzJxazFvYXBuM2VlNyJ9.Glv9djlI914mew5u3kW1Rw', 
             {attribution: "Mapbox",
             id: 'mapbox.streets'});
         
@@ -228,7 +228,7 @@ map.on('locationfound',showlocation);
 			maxZoom: 20
 			});
         var accu2020 = L.esri.tiledMapLayer({
-            url:  "https://gisweb.hendersoncountync.gov/arcgis/rest/services/Pictometry_AccuPlus_2020_v2/MapServer",
+            url:  "https://gisproxy.hendersoncountync.gov/arcgis/rest/services/Pictometry_AccuPlus_2020_v2/MapServer",
             maxZoom:23    
             });
         var a1951 = L.esri.tiledMapLayer({
@@ -261,17 +261,17 @@ map.on('locationfound',showlocation);
 /*** LAYER CONTROLS ***/
         
         var basemaps = {
-            "MapBox Streets" : mapboxother,
-            "MapBox Outdoors" : mapboxtile,
-            "MapBox Satellite" : mapboxsat,
+            // "MapBox Streets" : mapboxother,
+            // "MapBox Outdoors" : mapboxtile,
+            //"MapBox Satellite" : mapboxsat,
             "Esri Topo": esritopo,
             "Esri Aerial Photos" : esriaerial,
             "USGS Topo (Classic)" : esriusgs,
             "The National Map" : topotile,
             "OpenStreetMap" : osmtile,
             "OpenTopoMap" : opentopomap,
-            "Stamen - Terrain" : stamen_terrain,
-            "Stamen - Terrain Background" : stamen_terrain_bg
+            //  "Stamen - Terrain" : stamen_terrain,
+            //  "Stamen - Terrain Background" : stamen_terrain_bg
 			// "World Hillshade" : esrihillshade
             };
         var overlays = {
