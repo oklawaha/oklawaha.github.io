@@ -239,6 +239,11 @@ map.on('locationfound',showlocation);
             url: 'https://services.gis.nc.gov/secure/rest/services/Imagery/Orthoimagery_2023/ImageServer',
             maxZoom: 23    
             });
+        var o2001 = L.esri.tiledMapLayer({
+            url: 'https://gisweb.hendersoncountync.gov/arcgis/rest/services/Orthos2001/MapServer',
+            maxZoom: 21    
+
+        });
 
 
 /*** CELL TOWERS, VIA GEOJSON ***/        
@@ -285,9 +290,10 @@ map.on('locationfound',showlocation);
             "NC Counties" : nccounties,
             "Streets" : streets,
             "1951 Aerial Photos" : a1951,
+            "2001 Aerial photos" : o2001,
             //"2020 Pictometry AccuPlus Orthos" : accu2020,
-            "2022 Pictometry Orthophotos" : pict2,
-           "2023 State Orthophotos" : orthos2023
+            "2022 Pictometry Orthophotos" : pict2
+           //"2023 State Orthophotos" : orthos2023
             //"2020 Pictometry Orthophotos (standard)" : pict.bringToBack()
             
             };
