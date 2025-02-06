@@ -244,14 +244,14 @@ map.on('locationfound',showlocation);
             maxZoom: 21
         
         });
-        var helene_pict = L.tileLayer.wmts("https://svc.pictometry.com/Image/183B368E-6E6F-3385-39C4-571C8DD93026/wmts",
+        /*  var helene_pict = L.tileLayer.wmts("https://svc.pictometry.com/Image/183B368E-6E6F-3385-39C4-571C8DD93026/wmts",
            {layer: 'PICT-NCZHEN24-otwtYw5Bsi',
            format: 'image/png',
            style: "default",
             maxZoom: 16,
             minZoom: 4
            });
-        
+        */
         
            /*var topotile = L.tileLayer.wms("https://basemap.nationalmap.gov/arcgis/services/USGSTopo/MapServer/WMSServer",
            {layers: '0',
@@ -309,8 +309,8 @@ map.on('locationfound',showlocation);
             "1951 Aerial Photos" : a1951,
             "2001 Aerial photos" : o2001,
             //"2020 Pictometry AccuPlus Orthos" : accu2020,
-            "2022 Pictometry Orthophotos" : pict2,
-            "Post-Helene Aerials" : helene_pict
+            "2022 Pictometry Orthophotos" : pict2
+            // "Post-Helene Aerials" : helene_pict
            
             
             };
