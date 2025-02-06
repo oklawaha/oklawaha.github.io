@@ -247,9 +247,17 @@ map.on('locationfound',showlocation);
         var helene_pict = L.tileLayer.wmts("https://svc.pictometry.com/Image/183B368E-6E6F-3385-39C4-571C8DD93026/wmts",
            {layer: 'PICT-NCZHEN24-otwtYw5Bsi',
            format: 'image/png',
-            maxZoom: 20,
+            maxZoom: 16,
             minZoom: 4
            });
+        /*var topotile = L.tileLayer.wms("https://basemap.nationalmap.gov/arcgis/services/USGSTopo/MapServer/WMSServer",
+           {layers: '0',
+           format: 'image/png',
+            maxZoom: 16,
+            minZoom: 4
+           }); 
+           */ 
+
 
 
 /*** CELL TOWERS, VIA GEOJSON ***/        
