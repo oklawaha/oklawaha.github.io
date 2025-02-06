@@ -241,9 +241,15 @@ map.on('locationfound',showlocation);
             });
         var o2001 = L.esri.tiledMapLayer({
             url: 'https://gisweb.hendersoncountync.gov/arcgis/rest/services/Orthos2001/MapServer',
-            maxZoom: 21    
-
+            maxZoom: 21
+        
         });
+        var helene_pict = L.tileLayer.wmts("https://svc.pictometry.com/Image/183B368E-6E6F-3385-39C4-571C8DD93026/wmts",
+           {layers: '1',
+           format: 'image/png',
+            maxZoom: 20,
+            minZoom: 4
+           });
 
 
 /*** CELL TOWERS, VIA GEOJSON ***/        
