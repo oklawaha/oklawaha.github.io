@@ -244,6 +244,13 @@ map.on('locationfound',showlocation);
             maxZoom: 21
         
         });
+        var dem = L.esri.tiledMapLayer({
+            url: 'https://services.gis.nc.gov/secure/rest/services/Elevation/DEM03_hillshade/ImageServer',
+            maxZoom: 19    
+
+        });
+
+
         /*  var helene_pict = L.tileLayer.wmts("https://svc.pictometry.com/Image/183B368E-6E6F-3385-39C4-571C8DD93026/wmts",
            {layer: 'PICT-NCZHEN24-otwtYw5Bsi',
            format: 'image/png',
@@ -309,7 +316,8 @@ map.on('locationfound',showlocation);
             "1951 Aerial Photos" : a1951,
             "2001 Aerial photos" : o2001,
             //"2020 Pictometry AccuPlus Orthos" : accu2020,
-            "2022 Pictometry Orthophotos" : pict2
+            "2022 Pictometry Orthophotos" : pict2,
+            "LIDAR DEM" : dem
             // "Post-Helene Aerials" : helene_pict
            
             
