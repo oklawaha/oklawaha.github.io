@@ -235,7 +235,7 @@ map.on('locationfound',showlocation);
             url:  'https://gisweb.hendersoncountync.gov/arcgis/rest/services/AerialPhotos1951/MapServer',
             maxZoom: 19
             });
-        var orthos2023 = L.esri.imageService({
+        var orthos2023 = L.esri.imageMapLayer({
             url: 'https://services.gis.nc.gov/secure/rest/services/Imagery/Orthoimagery_2023/ImageServer',
             maxZoom: 23    
             });
@@ -317,6 +317,7 @@ map.on('locationfound',showlocation);
             "2001 Aerial photos" : o2001,
             //"2020 Pictometry AccuPlus Orthos" : accu2020,
             "2022 Pictometry Orthophotos" : pict2,
+            "2023 Statewide Orthos" : orthos2023,
             "LIDAR DEM" : dem
             // "Post-Helene Aerials" : helene_pict
            
