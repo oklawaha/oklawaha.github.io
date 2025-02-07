@@ -152,10 +152,10 @@ map.on('locationfound',showlocation);
             attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> Contributors &amp; <a              href="http://thunderforest.com">Thunderforest</a>',
             maxZoom: 18                    
             });
-		var topotile = L.tileLayer.wms("https://basemap.nationalmap.gov/arcgis/services/USGSTopo/MapServer/WMSServer",
+		var natlmap = L.tileLayer.wms("https://basemap.nationalmap.gov/arcgis/services/USGSTopo/MapServer/WMSServer",
            {layers: '0',
            format: 'image/png',
-            maxZoom: 16,
+            maxZoom: 18,
             minZoom: 4
            });
 		   
@@ -282,7 +282,7 @@ map.on('locationfound',showlocation);
             "Esri Topo": esritopo,
             "Esri Aerial Photos" : esriaerial,
             "USGS Topo (Classic)" : esriusgs,
-            "The National Map" : topotile,
+            "The National Map" : natlmap,
             "OpenStreetMap" : osmtile,
             "OpenTopoMap" : opentopomap,
             
@@ -295,13 +295,11 @@ map.on('locationfound',showlocation);
             "Streets" : streets,
             "1951 Aerial Photos" : a1951,
             "2001 Aerial photos" : o2001,
-            //"2020 Pictometry AccuPlus Orthos" : accu2020,
             "2022 Pictometry Orthophotos" : pict2,
             "2023 Statewide Orthos" : orthos2023,
             "LIDAR DEM" : dem,
             "Soils" : soils,
             "Flood Data" : ncflood
-            //"Henderson County Flood Data" : flood
             // "Post-Helene Aerials" : helene_pict
            
             
