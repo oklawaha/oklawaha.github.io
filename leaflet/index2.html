@@ -204,7 +204,7 @@ map.on('locationfound',showlocation);
 /*** MAP SERVICES ***/
 
         var countyborder = L.esri.dynamicMapLayer({
-           url: 'https://gisproxy.hendersoncountync.gov/arcgis/rest/services/Primary_County_Layers/MapServer',
+           url: 'https://gisweb.hendersoncountync.gov/arcgis/rest/services/Primary_County_Layers/MapServer',
             layers: [4]
             
             });
@@ -214,7 +214,7 @@ map.on('locationfound',showlocation);
 			minZoom: 14
 			});
         var streets = L.esri.dynamicMapLayer({
-            url: 'https://gisweb.hendersoncountync.gov/arcgis/rest/services/GISWeb/Roads/MapServer',
+            url: 'https://gisweb.hendersoncountync.gov/arcgis/rest/services/Roads/MapServer',
             maxZoom: 23
         });
 		
@@ -228,7 +228,7 @@ map.on('locationfound',showlocation);
 			maxZoom: 20
 			});
         var accu2020 = L.esri.tiledMapLayer({
-            url:  "https://gisproxy.hendersoncountync.gov/arcgis/rest/services/Pictometry_AccuPlus_2020_v2/MapServer",
+            url:  "https://gisweb.hendersoncountync.gov/arcgis/rest/services/Pictometry_AccuPlus_2020_v2/MapServer",
             maxZoom:23    
             });
         var a1951 = L.esri.tiledMapLayer({
@@ -260,15 +260,6 @@ map.on('locationfound',showlocation);
            });
         */
         
-           /*var topotile = L.tileLayer.wms("https://basemap.nationalmap.gov/arcgis/services/USGSTopo/MapServer/WMSServer",
-           {layers: '0',
-           format: 'image/png',
-            maxZoom: 16,
-            minZoom: 4
-           }); 
-           */ 
-
-
 
 /*** CELL TOWERS, VIA GEOJSON ***/        
         var thisicon = new L.Icon(
