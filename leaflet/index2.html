@@ -237,7 +237,8 @@ map.on('locationfound',showlocation);
             });
         var dem = L.esri.imageMapLayer({
             url: 'https://services.gis.nc.gov/secure/rest/services/Elevation/DEM03_hillshade/ImageServer',
-            maxZoom: 19    
+            maxZoom: 19,
+            opacity: 0.5  
 
         });
 
