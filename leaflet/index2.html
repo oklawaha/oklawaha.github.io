@@ -168,22 +168,7 @@ map.on('locationfound',showlocation);
         var opentopomap = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
             attribution: 'Map data: &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
-        });
-        
-        var stamen_terrain = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/terrain/{z}/{x}/{y}{r}.{ext}',{
-          attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-	       subdomains: 'abcd',
-	       minZoom: 0,
-	       maxZoom: 18,
-	       ext: 'png'   
-        });
-        var stamen_terrain_bg = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/terrain-background/{z}/{x}/{y}{r}.{ext}', {
-            attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-            subdomains: 'abcd',
-            minZoom: 0,
-            maxZoom: 18,
-            ext: 'png'
-        });			
+            });
         var mapboxstreets = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1Ijoib2tsYXdhaGEiLCJhIjoiY2l5bHI2azB1MDAydzJxazFvYXBuM2VlNyJ9.Glv9djlI914mew5u3kW1Rw', 
             {attribution: "Mapbox",
             id: 'mapbox.streets'});
@@ -197,7 +182,7 @@ map.on('locationfound',showlocation);
 /*** MAP SERVICES ***/
 
         var countyborder = L.esri.dynamicMapLayer({
-           url: 'https://gisweb.hendersoncountync.gov/arcgis/rest/services/Primary_County_Layers/MapServer',
+            url: 'https://gisweb.hendersoncountync.gov/arcgis/rest/services/Primary_County_Layers/MapServer',
             layers: [4]
             });
 		var ncparcels = L.esri.dynamicMapLayer({
@@ -207,12 +192,17 @@ map.on('locationfound',showlocation);
         var streets = L.esri.dynamicMapLayer({
             url: 'https://gisweb.hendersoncountync.gov/arcgis/rest/services/Roads/MapServer',
             maxZoom: 23
-        });
+            });
         var soils = L.esri.dynamicMapLayer({
             url: 'https://www.ncmhtd.com/arcgis/rest/services/NRCS/NRCS_SoilData/MapServer',    
             layers: [0,4],
             maxZoom: 23    
-        });
+            });
+        var flood = L.esri.dynamicMapLayer({
+            url: 'https://gisweb.hendersoncountync.gov/arcgis/rest/services/Flood_Data/MapServer',
+            layers: [2,3,4,6,7],
+            maxZoom: 23
+            });
 		
         var nccounties = L.esri.dynamicMapLayer({url: 'https://gis11.services.ncdot.gov/arcgis/rest/services/NCDOT_CountyShorelineBdy_Poly/MapServer'});
 		var pict = L.esri.tiledMapLayer({
@@ -239,7 +229,7 @@ map.on('locationfound',showlocation);
             url: 'https://gisweb.hendersoncountync.gov/arcgis/rest/services/Orthos2001/MapServer',
             maxZoom: 21
         
-        });
+            });
         var dem = L.esri.imageMapLayer({
             url: 'https://services.gis.nc.gov/secure/rest/services/Elevation/DEM03_hillshade/ImageServer',
             maxZoom: 19    
@@ -256,7 +246,6 @@ map.on('locationfound',showlocation);
            });
         */
         
-
 /*** CELL TOWERS, VIA GEOJSON ***/        
         var thisicon = new L.Icon(
             {iconUrl: 'towericon_small.png',
@@ -290,9 +279,7 @@ map.on('locationfound',showlocation);
             "The National Map" : topotile,
             "OpenStreetMap" : osmtile,
             "OpenTopoMap" : opentopomap,
-            //  "Stamen - Terrain" : stamen_terrain,
-            //  "Stamen - Terrain Background" : stamen_terrain_bg
-			// "World Hillshade" : esrihillshade
+            
             };
         var overlays = {
             "Cell Towers (via JSON)" : towerdata,
@@ -306,7 +293,8 @@ map.on('locationfound',showlocation);
             "2022 Pictometry Orthophotos" : pict2,
             "2023 Statewide Orthos" : orthos2023,
             "LIDAR DEM" : dem,
-            "Soils" : soils
+            "Soils" : soils,
+            "Henderson County Flood Data" : flood
             // "Post-Helene Aerials" : helene_pict
            
             
