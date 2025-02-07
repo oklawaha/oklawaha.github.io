@@ -177,7 +177,6 @@ map.on('locationfound',showlocation);
 	       maxZoom: 18,
 	       ext: 'png'   
         });
-        
         var stamen_terrain_bg = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/terrain-background/{z}/{x}/{y}{r}.{ext}', {
             attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
             subdomains: 'abcd',
@@ -200,9 +199,7 @@ map.on('locationfound',showlocation);
         var countyborder = L.esri.dynamicMapLayer({
            url: 'https://gisweb.hendersoncountync.gov/arcgis/rest/services/Primary_County_Layers/MapServer',
             layers: [4]
-            
             });
-		
 		var ncparcels = L.esri.dynamicMapLayer({
 			url: 'https://services.nconemap.gov/secure/rest/services/NC1Map_Parcels/MapServer',
 			minZoom: 14
@@ -212,7 +209,7 @@ map.on('locationfound',showlocation);
             maxZoom: 23
         });
         var soils = L.esri.dynamicMapLayer({
-            url: 'https://www.ncmhtd.com/arcgis/rest/services/NRCS/NRCS_SoilData/MapServer/4',    
+            url: 'https://www.ncmhtd.com/arcgis/rest/services/NRCS/NRCS_SoilData/MapServer',    
             layers: [4],
             maxZoom: 23    
         });
