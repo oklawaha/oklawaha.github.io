@@ -188,11 +188,8 @@ map.on('locationfound',showlocation);
         var mapboxstreets = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1Ijoib2tsYXdhaGEiLCJhIjoiY2l5bHI2azB1MDAydzJxazFvYXBuM2VlNyJ9.Glv9djlI914mew5u3kW1Rw', 
             {attribution: "Mapbox",
             id: 'mapbox.streets'});
-        
         var esritopo = L.esri.basemapLayer('Topographic', {minZoom: 4});
-		
         var esriusgs = L.esri.basemapLayer('USATopo', {minZoom: 4});
-		
         var esriaerial = L.esri.basemapLayer('Imagery');
 		
 		// var esrihillshade = L.esri.basemapLayer('World Hillshade');
