@@ -155,7 +155,7 @@ map.on('locationfound',showlocation);
 		var natlmap = L.tileLayer.wms("https://basemap.nationalmap.gov/arcgis/services/USGSTopo/MapServer/WMSServer",
            {layers: '0',
            format: 'image/png',
-            maxZoom: 18,
+            maxZoom: 17,
             minZoom: 4
            });
 		   
@@ -270,7 +270,7 @@ map.on('locationfound',showlocation);
             });
 
 /*** ADD DEFAULT LAYERS ***/        
-        topotile.addTo(map);
+        natlmap.addTo(map);
         countyborder.addTo(map);
         
 /*** LAYER CONTROLS ***/
