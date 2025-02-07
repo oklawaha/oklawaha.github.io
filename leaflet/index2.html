@@ -203,6 +203,11 @@ map.on('locationfound',showlocation);
             layers: [2,3,4,6,7],
             maxZoom: 23
             });
+        var ncflood = L.esri.dynamicMapLayer({
+            url: 'https://spartagis.ncem.org/arcgis/rest/services/Public/FRIS_FloodZones/MapServer',
+            layers: [0,1,2],
+            maxZoom: 22
+            });
 		
         var nccounties = L.esri.dynamicMapLayer({url: 'https://gis11.services.ncdot.gov/arcgis/rest/services/NCDOT_CountyShorelineBdy_Poly/MapServer'});
 		var pict = L.esri.tiledMapLayer({
@@ -294,7 +299,8 @@ map.on('locationfound',showlocation);
             "2023 Statewide Orthos" : orthos2023,
             "LIDAR DEM" : dem,
             "Soils" : soils,
-            "Henderson County Flood Data" : flood
+            "Flood Data" : ncflood
+            //"Henderson County Flood Data" : flood
             // "Post-Helene Aerials" : helene_pict
            
             
