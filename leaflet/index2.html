@@ -239,8 +239,9 @@ map.on('locationfound',showlocation);
 
         });
 
-        var helene_pict = L.TileLayer("https://svc.pictometry.com/Image/183B368E-6E6F-3385-39C4-571C8DD93026/wmts",
-           {layer: 'PICT-NCZHEN24-otwtYw5Bsi',
+        var helene_pict = L.TileLayer("https://svc.pictometry.com/Image/183B368E-6E6F-3385-39C4-571C8DD93026/wmts/tile/1.0.0/PICT-NCZHEN24-otwtYw5Bsi/{style}/{tileMatrixSet}/{z}/{y}/{x}",
+           {
+            //layer: 'PICT-NCZHEN24-otwtYw5Bsi',
            format: 'image/png',
            style: "default",
             maxZoom: 16,
@@ -295,8 +296,8 @@ map.on('locationfound',showlocation);
             "2023 Statewide Orthos" : orthos2023,
             "LIDAR DEM" : dem,
             "Soils" : soils,
-            "Statewide Flood Data" : ncflood
-            //"Post-Helene Aerials" : helene_pict
+            "Statewide Flood Data" : ncflood,
+            "Post-Helene Aerials" : helene_pict
            
             
             };
