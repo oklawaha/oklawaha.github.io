@@ -250,7 +250,12 @@ map.on('locationfound',showlocation);
             maxZoom: 16,
             minZoom: 4
            });
-        
+        var helene_noaa1 = L.tileLayer("https://stormscdn.ngs.noaa.gov/20241006a-rgb/{level}/{col}/{row}",
+           {
+            maxZoom: 16,
+            minZoom: 4
+           }
+        );
         
 /*** CELL TOWERS, VIA GEOJSON ***/        
         var thisicon = new L.Icon(
@@ -299,7 +304,8 @@ map.on('locationfound',showlocation);
             "2023 Statewide Orthos" : orthos2023,
             "LIDAR DEM" : dem,
             "Soils" : soils,
-            "Statewide Flood Data" : ncflood
+            "Statewide Flood Data" : ncflood,
+            "Post-Helene Aerials (NOAA)" : helene_noaa1
             //"Post-Helene Aerials" : helene_pict 
             };
         L.control.layers(basemaps,overlays).addTo(map);
