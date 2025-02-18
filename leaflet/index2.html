@@ -223,6 +223,10 @@ map.on('locationfound',showlocation);
             url:  'https://gisweb.hendersoncountync.gov/arcgis/rest/services/AerialPhotos1951/MapServer',
             maxZoom: 19
             });
+        var a1984 = L.esri.tiledMapLayer({
+            url: 'https://gisweb.hendersoncountync.gov/arcgis/rest/services/Orthos1984/MapServer',
+            maxZoom: 19    
+            });
         var orthos2023 = L.esri.imageMapLayer({
             url: 'https://services.gis.nc.gov/secure/rest/services/Imagery/Orthoimagery_2023/ImageServer',
             maxZoom: 23    
@@ -300,6 +304,7 @@ map.on('locationfound',showlocation);
             "NC Counties" : nccounties,
             "Streets" : streets,
             "1951 Aerial Photos" : a1951,
+            "1984 Aerial Photos" : a1984,
             "2001 Aerial photos" : o2001,
             "2022 Pictometry Orthophotos" : pict2,
             "2023 Statewide Orthos" : orthos2023,
