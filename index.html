@@ -22,7 +22,7 @@
 
 <body>
 <h1>The Portal of The Drost.</h1>
-<p><i>Hand-crafted, artisan web apps &amp; links with a refreshing taste and very few harmful side effects.<sup>&ast;</sup></i></p>
+<p><i>Hand-crafted, artisan web apps &amp; links with a refreshing taste and very few harmful side effects.</i></p>
 <h2 id="mainheader">Links for Conservation &amp; Ecology Work.</h2>
 <ul id="mainlinks">
 
@@ -50,6 +50,40 @@
       <li><a href="leaflet/index2.html" target="_blank">Leaflet Test Map 2</a></li>
       <li><a href="https://leanpub.com/leaflet-tips-and-tricks/read" target="_blank">Leaflet Tips &amp; Tricks</a></li>
     </ul>
+
+<h2>Testing Escrow Code</h2>
+- EscrowCheck Code Starts Here -->
+<div id="auto-widget"></div>
+<script type="text/javascript">
+    (function (doc, tag, id) {
+        var js = doc.getElementsByTagName(tag)[0];
+        if (doc.getElementById(id)) {
+            return;
+        }
+        js = doc.createElement(tag);
+        js.id = id;
+        js.src = 'https://my.autoagent.com/js/escrow-check-plugin.js';
+        js.type = 'text/javascript';
+        doc.body.appendChild(js);
+    }(document, 'script', 'auto-escrow-widget'));
+
+    if (!window.autoEscrowWidgetInitialized) {
+        window.onload = function () {
+            AutoagentEscrowWidget.setOptions({
+                targetId: 'auto-widget',
+                id: '2059'
+            });
+            AutoagentEscrowWidget.init();
+            window.autoEscrowWidgetInitialized = true;
+        }
+    }
+</script>
+<!-- EscrowCheck Code Ends Here -->
+
+<input type="text" id="autoagent-search-input" value placeholder="Search by item number">
+<button type="button" id="autoagent-search-input">Search REID</button>
+
+
 <h2>Organizations &amp; Events</h2>
     <ul>
         <li><a href="http://www.wildflowerpilgrimage.org/">Smokies Wildflower Pilgrimage</a></li>
@@ -75,7 +109,7 @@
         <!--<li><a href="http://geospatialtraining.com/category/articles/">GeoSpatialTraining.com</a></li>
         <li><a href="http://fuzzytolerance.info/">Fuzzy Tolerance (Tobin Bradley)</a></li>  -->
     </ul>
-<p>* This web page has links &amp; apps I made of interest for conservation, ecology, &amp; GIS work, or other things of interest to me. Hand-coded by yours truly so I can practice coding (CSS, HTML, JS). </p>
+
 <p style="font-size: small;"><strong>
     <a href="https://henderson.roktech.net/gomaps4" target="_blank">GoMaps</a> |  
     <a href="https://photos.google.com" target="_blank">Photos</a> | 
