@@ -242,6 +242,13 @@ map.on('locationfound',showlocation);
             opacity: 0.5  
 
         });
+        var contours = L.esri.imageMapLayer({
+            url: 'https://services.nconemap.gov/secure/services/Elevation/DEM03_Contours4_raster/ImageServer',
+            maxZoom: 19    
+
+        });
+
+
 
         var helene_pict = L.tileLayer("https://svc.pictometry.com/Image/183B368E-6E6F-3385-39C4-571C8DD93026/wmts/PICT-NCZHEN24-otwtYw5Bsi/{Style}/{TileMatrixSet}/{z}/{y}/{x}",
         //var helene_pict = L.tileLayer("https://svc.pictometry.com/Image/183B368E-6E6F-3385-39C4-571C8DD93026/wmts/PICT-NCZHEN24-otwtYw5Bsi/{Style}/{TileMatrixSet}/{z}/{y}/{x}.png",
@@ -298,6 +305,7 @@ map.on('locationfound',showlocation);
             
             };
         var overlays = {
+            "4-foot Contours" : contours,
             "Cell Towers (via JSON)" : towerdata,
             "Henderson County Border" : countyborder,
 			"NC Parcels" : ncparcels,
