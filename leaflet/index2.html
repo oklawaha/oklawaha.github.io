@@ -143,7 +143,7 @@ map.on('locationfound',showlocation);
         var osmurl = '//{s}.tile.osm.org/{z}/{x}/{y}.png';
         var osmtile = L.tileLayer(osmurl,{
             attribution: 'Copyright <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-            maxZoom: 16,
+            maxZoom: 19,
             minZoom: 4    
             });
 		var outdoors = L.tileLayer(
@@ -245,14 +245,8 @@ map.on('locationfound',showlocation);
             url: 'https://services.gis.nc.gov/secure/rest/services/Elevation/DEM03_Contours4_raster/ImageServer',
             maxZoom: 23
             });
-
-
-
         var helene_pict = L.tileLayer("https://svc.pictometry.com/Image/183B368E-6E6F-3385-39C4-571C8DD93026/wmts/PICT-NCZHEN24-otwtYw5Bsi/{Style}/{TileMatrixSet}/{z}/{y}/{x}",
-        //var helene_pict = L.tileLayer("https://svc.pictometry.com/Image/183B368E-6E6F-3385-39C4-571C8DD93026/wmts/PICT-NCZHEN24-otwtYw5Bsi/{Style}/{TileMatrixSet}/{z}/{y}/{x}.png",
-        //var helene_pict = L.TileLayer("https://svc.pictometry.com/Image/183B368E-6E6F-3385-39C4-571C8DD93026/wmts/PICT-NCZHEN24-otwtYw5Bsi/{Style}/{TileMatrixSet}/{TileMatrix}/{TileCol}/{TileRow}.png",
            {
-            //layer: 'PICT-NCZHEN24-otwtYw5Bsi',
             tileMatrixSet: 'default028mm',
            format: 'image/png',
            style: "default",
@@ -266,7 +260,6 @@ map.on('locationfound',showlocation);
             minZoom: 4
            }
         );
-        
 /*** CELL TOWERS, VIA GEOJSON ***/        
         var thisicon = new L.Icon(
             {iconUrl: 'towericon_small.png',
