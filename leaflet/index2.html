@@ -238,15 +238,13 @@ map.on('locationfound',showlocation);
             });
         var dem = L.esri.imageMapLayer({
             url: 'https://services.gis.nc.gov/secure/rest/services/Elevation/DEM03_hillshade/ImageServer',
-            maxZoom: 19,
-            opacity: 0.5  
-
-        });
+            maxZoom: 23,
+            opacity: 0.5
+            });
         var contours = L.esri.imageMapLayer({
-            url: 'https://services.nconemap.gov/secure/services/Elevation/DEM03_Contours4_raster/ImageServer',
-            maxZoom: 19    
-
-        });
+            url: 'https://services.gis.nc.gov/secure/rest/services/Elevation/DEM03_Contours4_raster/ImageServer',
+            maxZoom: 23
+            });
 
 
 
