@@ -255,7 +255,8 @@ map.on('locationfound',showlocation);
            });
         var o2025 = L.esri.tiledMapLayer({
             url: 'https://gisweb.hendersoncountync.gov/arcgis/rest/services/Orthos2025_NC/MapServer',
-            maxZoom: 21
+            maxZoom: 21,
+            minZoom: 7
         });
         var helene_noaa1 = L.tileLayer("https://stormscdn.ngs.noaa.gov/20241006a-rgb/{level}/{col}/{row}",
            {
@@ -309,7 +310,7 @@ map.on('locationfound',showlocation);
             "1951 Aerial Photos" : a1951,
             "1984 Aerial Photos" : a1984,
             "2001 Aerial photos" : o2001,
-            "2025 State Orthos (post-Helene)" : o2025,
+            "2025 State Orthos - Jan-Feb 2025" : o2025,
             "LIDAR DEM" : dem,
             "Soils" : soils,
             "Statewide Flood Data" : ncflood,
