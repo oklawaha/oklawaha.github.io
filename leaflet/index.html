@@ -253,6 +253,14 @@ map.on('locationfound',showlocation);
             maxZoom: 23,
             opacity: 0.6
             });
+
+        var usgs_3dep = L.esri.imageMapLayer({
+            url: 'https://elevation.nationalmap.gov/arcgis/rest/services/3DEPElevation/ImageServer',
+            maxZoom: 23,
+            opacity: 0.6
+
+        });
+
         var contours = L.esri.imageMapLayer({
             url: 'https://services.gis.nc.gov/secure/rest/services/Elevation/DEM03_Contours4_raster/ImageServer',
             maxZoom: 23
@@ -326,6 +334,7 @@ map.on('locationfound',showlocation);
             "2023 Aerial photos" : orthos2023,
             
             "LIDAR DEM" : dem,
+            "USGS 3DEP Bare Earth DEM" : usgs_3dep,
             "Soils" : soils,
             "Statewide Flood Data" : ncflood,
             "County Flood Data" : flood
